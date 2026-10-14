@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fizz. Creative Studio</title>
+<meta name="description" content="Fizz. is a creative studio for branding, social media, web design and growth. Working online, worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23E06A4E'/%3E%3C/svg%3E">
+<style>
+/* Layout: one long page in colored bands (cream → petrol tapes → cream → petrol → pinned horizontal process → butter → cream → petrol), 1240px max.
+   Brand is single-look by design (always light/cream), so no dark theme. The full stop (a coral square) is the moving element everywhere. */
+:root{
+  --cream:#F6F1EA; --paper:#FFFFFF; --petrol:#1D4A5E; --petrol-ink:#16323F; --petrol-2:#24566C;
+  --coral:#E06A4E; --sea:#A9C3C5; --butter:#F2D27A; --line:#DCD4C6; --muted:#4F6E7B; --line-dark:#3E6878;
+  --display:'Anton','Impact','Arial Narrow',sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{background:var(--cream);color:var(--petrol);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+::selection{background:var(--coral);color:var(--cream)}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+.dot{color:var(--coral)}
+.eyebrow{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--coral)}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.92;text-wrap:balance;letter-spacing:.5px;overflow-wrap:break-word}
+h2{font-size:clamp(44px,6.4vw,92px)}
+.serif{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:400;letter-spacing:0}
+.hl{background:var(--coral);color:var(--cream);padding:0 .12em;display:inline-block;line-height:1}
+
+/* ---------- Scroll progress ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--coral);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(246,241,234,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:transform .45s var(--ease)}
+.nav.hide{transform:translateY(-110%)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.logo{display:block;width:86px;color:var(--petrol)}
+.logo svg{display:block;width:100%;height:auto}
+.logo:hover .ldot{animation:hop .6s var(--ease)}
+.nav ul{display:flex;gap:28px;font-size:15px;font-weight:500}
+.nav ul a{position:relative;padding-block:6px}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--coral);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-r{display:flex;align-items:center;gap:14px}
+.lang{position:relative;display:flex;border:1.5px solid var(--petrol);border-radius:999px;padding:3px}
+.lang button{position:relative;z-index:1;width:40px;height:30px;font-size:12px;font-weight:700;letter-spacing:1px;border-radius:999px;transition:color .3s}
+.lang button.on{color:var(--cream)}
+.lang .pill{position:absolute;top:3px;left:3px;width:40px;height:30px;border-radius:999px;background:var(--petrol);transition:transform .45s var(--ease)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;border-radius:999px;padding:13px 24px;border:2px solid var(--petrol);background:var(--petrol);color:var(--cream);position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),border-color .35s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--coral);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
+.btn:hover::before{transform:none}
+.btn:hover{border-color:var(--coral)}
+.btn.ghost{background:transparent;color:var(--petrol)}
+.btn.ghost:hover{color:var(--cream)}
+.btn .arr{width:16px;height:16px;transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(4px) rotate(-45deg)}
+@media (max-width:960px){.nav ul{display:none}}
+@media (max-width:560px){.nav .btn{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .wrap{position:relative;padding-block:64px 72px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero h1{font-size:clamp(60px,9.6vw,150px);line-height:.88}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-block:.16em .06em;margin-block:-.16em -.06em}
+.wi{display:inline-block;animation:rise 1.1s var(--ease) both;animation-delay:calc(var(--i) * 75ms + .15s)}
+.hero h1 .hl{animation:hlwipe 1.2s var(--ease) both;animation-delay:.7s}
+@keyframes rise{from{transform:translateY(110%) rotate(4deg)}}
+@keyframes hlwipe{from{background-size:0 100%;color:var(--petrol)}}
+.hero h1 .hl{background:linear-gradient(var(--coral),var(--coral)) no-repeat left/100% 100%}
+.hero .lead{font-size:clamp(18px,1.5vw,21px);max-width:34ch;margin:30px 0 30px}
+.hero .lead .serif{font-size:1.3em}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--muted)}
+.meta span{display:inline-flex;align-items:center;gap:8px}
+.meta span::before{content:"";width:6px;height:6px;background:var(--coral)}
+.fade-in{animation:fadeup 1s var(--ease) both;animation-delay:.9s}
+@keyframes fadeup{from{opacity:0;transform:translateY(24px)}}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 56px}}
+
+/* Hero stage: four mock pieces = four services */
+.stage-wrap{position:relative;height:540px;overflow:visible}
+.stage{position:absolute;top:0;left:50%;width:520px;height:540px;margin-left:-260px;transform-origin:top center;--mx:0;--my:0}
+.piece{position:absolute;transform:translate(calc(var(--mx) * var(--d) * 1px),calc(var(--my) * var(--d) * 1px)) rotate(var(--r));transition:transform .6s var(--ease)}
+.piece > .inner{animation:float 6s ease-in-out infinite;animation-delay:var(--fd,0s);height:100%}
+@keyframes float{50%{transform:translateY(-12px)}}
+.pop{animation:popin .9s var(--ease) both;animation-delay:var(--pd)}
+@keyframes popin{from{opacity:0;transform:translateY(60px) scale(.85)}}
+.tag{position:absolute;top:-14px;left:16px;z-index:2;background:var(--petrol-ink);color:var(--cream);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.p-logo{left:0;top:40px;width:240px;height:250px;--r:-7deg;--d:18;--pd:.55s}
+.p-logo .inner{background:var(--butter);padding:26px 24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 50px -30px rgba(22,50,63,.55)}
+.p-logo svg{width:90px;height:auto;color:var(--petrol)}
+.p-logo b{font-family:var(--display);font-weight:400;font-size:30px;text-transform:uppercase;line-height:1}
+.sw{display:flex;gap:6px}.sw i{width:22px;height:22px}
+.p-post{right:0;top:0;width:250px;height:318px;--r:6deg;--d:32;--pd:.7s;--fd:-2s}
+.p-post .inner{background:var(--petrol);color:var(--cream);padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 50px -30px rgba(22,50,63,.7)}
+.p-post .top{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+.p-post .top i{width:20px;height:20px;background:var(--coral)}
+.p-post .img{flex:1;background:var(--sea);position:relative;display:flex;align-items:flex-end;padding:16px;overflow:hidden}
+.p-post .img::before,.p-post .img::after{content:"";position:absolute;width:18px;height:18px}
+.p-post .img::before{left:8px;top:8px;border-top:2px solid var(--petrol);border-left:2px solid var(--petrol)}
+.p-post .img::after{right:8px;bottom:8px;border-bottom:2px solid var(--coral);border-right:2px solid var(--coral)}
+.p-post .img b{font-family:var(--display);font-weight:400;font-size:34px;text-transform:uppercase;line-height:.95;color:var(--petrol);position:relative}
+.p-post .img .sun{position:absolute;right:26px;top:26px;width:56px;height:56px;background:var(--butter);animation:spin 14s linear infinite}
+.p-post .bar{display:flex;gap:12px}.p-post .bar svg{width:20px;height:20px}
+.p-post .heart{animation:beat 1.6s ease-in-out infinite;transform-origin:center}
+@keyframes beat{15%{transform:scale(1.25)}30%{transform:scale(1)}}
+.p-web{left:150px;top:190px;width:196px;height:350px;--r:-2deg;--d:55;--pd:.85s;--fd:-4s;z-index:3}
+.p-web .inner{background:var(--petrol-ink);border-radius:30px;padding:9px;box-shadow:0 40px 60px -30px rgba(22,50,63,.8)}
+.screen{background:var(--cream);border-radius:22px;height:100%;padding:18px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.screen .bar{display:flex;justify-content:space-between;align-items:center}
+.screen .bar i{width:30px;height:6px;background:var(--petrol)}
+.screen .bar s{width:14px;height:10px;border-block:2px solid var(--petrol)}
+.screen b{font-family:var(--display);font-weight:400;font-size:30px;line-height:.92;text-transform:uppercase;margin-top:14px}
+.screen .ln{height:6px;background:var(--line);border-radius:3px;animation:load 3s var(--ease) infinite}
+.screen .ln:nth-of-type(2){width:80%;animation-delay:.2s}
+@keyframes load{0%{transform:scaleX(0);transform-origin:left}40%,100%{transform:scaleX(1);transform-origin:left}}
+.screen .cta{margin-top:auto;background:var(--coral);color:var(--cream);font-size:12px;font-weight:700;text-align:center;padding:10px;border-radius:999px}
+.screen .pic{height:70px;background:var(--butter);position:relative}
+.screen .pic::after{content:"";position:absolute;left:14px;bottom:12px;width:26px;height:26px;background:var(--petrol)}
+.p-grow{right:-6px;bottom:30px;width:200px;height:132px;--r:3deg;--d:70;--pd:1s;--fd:-1s;z-index:4}
+.p-grow .inner{background:var(--paper);padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 50px -30px rgba(22,50,63,.55)}
+.p-grow small{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:7px;height:62px}
+.bars i{flex:1;background:var(--sea);transform-origin:bottom;animation:grow 2.8s var(--ease) infinite;animation-delay:calc(var(--k) * .12s)}
+.bars i:last-child{background:var(--coral)}
+@keyframes grow{0%{transform:scaleY(.15)}45%,100%{transform:scaleY(1)}}
+.sticker{position:absolute;left:-20px;bottom:0;width:130px;height:130px;z-index:5}
+.sticker svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.sticker text{font-family:var(--display);font-size:15.5px;letter-spacing:2.6px;fill:var(--petrol)}
+.sticker::after{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;background:var(--coral);animation:hop 2.4s var(--ease) infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes hop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-10px) rotate(45deg)}}
+
+/* ---------- Tapes (marquees) ---------- */
+.tapes{position:relative;height:200px;overflow:hidden;margin-block:10px}
+.tape{position:absolute;left:-5%;width:110%;overflow:hidden;white-space:nowrap}
+.tape .row{display:inline-flex;will-change:transform}
+.tape span{font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,4.4vw,52px);letter-spacing:1px;padding-block:12px;display:inline-flex;align-items:center}
+.tape span i{display:inline-block;width:.3em;height:.3em;background:var(--coral);margin:0 .7em}
+.tape.a{top:40px;background:var(--petrol);color:var(--cream);transform:rotate(-3deg);z-index:2}
+.tape.b{top:70px;background:var(--butter);color:var(--petrol);transform:rotate(2.5deg)}
+.tape.b span i{background:var(--petrol)}
+.tape.b span em{font-family:var(--serif);font-style:italic;text-transform:none;font-size:1.05em;margin-right:.25em}
+
+/* ---------- Generic section ---------- */
+.sec{padding-block:120px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:56px}
+.sec-head > div{display:flex;flex-direction:column;gap:18px;min-width:0}
+.sec-head p{max-width:44ch;color:var(--muted)}
+.play{animation:fadeup .95s var(--ease) both;animation-delay:var(--rd,0s)}
+
+/* ---------- Services ---------- */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:30px 26px 30px;display:flex;flex-direction:column;gap:16px;position:relative;min-width:0;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),box-shadow .5s;will-change:transform}
+.card:hover{box-shadow:0 40px 60px -40px rgba(22,50,63,.5)}
+.card::before,.card::after{content:"";position:absolute;width:22px;height:22px;transition:all .5s var(--ease)}
+.card::before{left:10px;top:10px;border-top:2px solid var(--petrol);border-left:2px solid var(--petrol)}
+.card::after{right:10px;bottom:10px;border-bottom:2px solid var(--coral);border-right:2px solid var(--coral)}
+.card:hover::before{left:-6px;top:-6px;width:44px;height:44px}
+.card:hover::after{right:-6px;bottom:-6px;width:44px;height:44px;border-width:3px}
+.card h3{font-size:clamp(34px,2.9vw,42px)}
+.card p{color:var(--muted)}
+.card ul{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:8px;font-size:15px}
+.card li{display:flex;gap:10px;align-items:baseline}
+.card li::before{content:"";flex:none;width:7px;height:7px;background:var(--coral);transform:translateY(-1px)}
+.glyph{height:96px;display:flex;align-items:center}
+.g-brand svg{width:96px;color:var(--petrol)}
+.g-brand rect.bld{transform-box:fill-box;transform-origin:left;animation:build 4s var(--ease) infinite}
+.g-brand rect.bld.v{transform-origin:top}
+.g-brand rect.d{animation:hop 2s var(--ease) infinite}
+@keyframes build{0%{transform:scale(0,1)}25%,100%{transform:none}}
+.g-brand rect.bld.v{animation-name:buildv}
+@keyframes buildv{0%{transform:scale(1,0)}25%,100%{transform:none}}
+.g-feed{display:grid;grid-template-columns:repeat(3,26px);gap:4px}
+.g-feed i{height:26px;animation:feed 3.6s var(--ease) infinite;animation-delay:calc(var(--k) * .1s)}
+.g-feed i:nth-child(3n+1){background:var(--petrol)}.g-feed i:nth-child(3n+2){background:var(--line)}.g-feed i:nth-child(3n){background:var(--coral)}
+@keyframes feed{0%{transform:scale(0)}20%,85%{transform:scale(1)}100%{transform:scale(0)}}
+.g-web .win{width:110px;height:82px;border:2px solid var(--petrol);display:flex;flex-direction:column}
+.g-web .win > i{height:14px;border-bottom:2px solid var(--petrol);display:flex;gap:4px;align-items:center;padding-left:6px}
+.g-web .win > i b{width:5px;height:5px;background:var(--petrol)}
+.g-web .win > i b:first-child{background:var(--coral)}
+.g-web .win div{padding:8px;display:grid;gap:6px}
+.g-web .win s{display:block;height:6px;background:var(--sea);transform-origin:left;animation:load 3s var(--ease) infinite}
+.g-web .win s:nth-child(2){width:70%;animation-delay:.25s}.g-web .win s:nth-child(3){width:40%;background:var(--coral);height:12px;animation-delay:.5s}
+.g-grow{gap:6px;align-items:flex-end;height:96px}
+.g-grow i{width:16px;background:var(--sea);transform-origin:bottom;animation:grow 3s var(--ease) infinite;animation-delay:calc(var(--k) * .12s)}
+.g-grow i:last-child{background:var(--coral)}
+@media (max-width:1120px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.svc{grid-template-columns:1fr}}
+
+/* ---------- Who ---------- */
+.who{background:var(--petrol);color:var(--cream);position:relative;overflow:hidden}
+.who .ghost-txt{position:absolute;right:-2%;bottom:-.18em;font-family:var(--display);font-size:clamp(120px,22vw,320px);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px var(--line-dark);pointer-events:none;white-space:nowrap}
+.who .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.who h2 .serif{color:var(--butter)}
+.who p{color:var(--sea);max-width:44ch;margin-top:22px}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{border:1.5px solid var(--sea);border-radius:999px;padding:12px 20px;font-weight:500;font-size:16px;transition:background .3s,border-color .3s,color .3s,transform .4s var(--ease);animation:bob 5s ease-in-out infinite;animation-delay:calc(var(--k) * -.6s)}
+.chip:hover{background:var(--coral);border-color:var(--coral);transform:translateY(-4px) rotate(-3deg)}
+.chip.on{background:var(--cream);color:var(--petrol);border-color:var(--cream)}
+.chip.more{border-style:dashed;font-family:var(--serif);font-style:italic;font-size:19px}
+@keyframes bob{50%{translate:0 -6px}}
+@media (max-width:960px){.who .wrap{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- Process (pinned horizontal on desktop) ---------- */
+.process{position:relative}
+.pin{position:relative}
+.pin-inner{padding-block:110px 60px}
+.track{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.step{flex:0 0 auto;width:min(480px,82vw);padding:10px 40px 10px 0;display:flex;flex-direction:column;gap:14px;position:relative}
+.step + .step{padding-left:40px;border-left:1px solid var(--line)}
+.step .n{font-family:var(--display);font-size:clamp(110px,13vw,190px);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--petrol);transition:color .5s,-webkit-text-stroke-color .5s}
+.step.act .n{color:var(--coral);-webkit-text-stroke-color:var(--coral)}
+.step h3{font-size:44px;margin-top:10px}
+.step p{color:var(--muted);max-width:34ch}
+.rail{position:relative;height:2px;background:var(--line);margin-top:48px}
+.rail i{position:absolute;left:0;top:0;height:2px;width:100%;background:var(--petrol);transform-origin:left;transform:scaleX(var(--p,0))}
+.rail b{position:absolute;top:-7px;left:calc(var(--p,0) * 100%);width:16px;height:16px;margin-left:-8px;background:var(--coral);transform:rotate(calc(var(--p,0) * 360deg))}
+.pinned .pin-inner{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-block:40px}
+.pinned .track{overflow:visible}
+@media (max-width:899px){.step{width:100%;padding:24px 0;border-left:0!important;padding-left:0!important;border-top:1px solid var(--line)}.track{flex-direction:column}.rail{display:none}}
+
+/* ---------- Packages ---------- */
+.packs{background:var(--butter)}
+.pk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.pack{background:var(--cream);padding:34px 32px;display:flex;flex-direction:column;gap:14px;min-width:0;position:relative;transition:transform .5s var(--ease),box-shadow .5s}
+.pack:hover{transform:translateY(-8px);box-shadow:0 40px 60px -40px rgba(22,50,63,.55)}
+.pack.feat{background:var(--petrol);color:var(--cream)}
+.pack.feat .for,.pack.feat li{color:var(--sea)}
+.pack h3{font-size:clamp(40px,4vw,56px)}
+.pack .for{color:var(--muted)}
+.pack ul{margin:6px 0 10px;display:grid;gap:8px;font-size:15px;flex-grow:1}
+.pack li{display:flex;gap:10px;align-items:baseline}
+.pack li::before{content:"";flex:none;width:7px;height:7px;background:var(--coral);transform:translateY(-1px)}
+.pack .btn{align-self:flex-start}
+.pack.feat .btn{background:var(--coral);border-color:var(--coral)}
+.pack.feat .btn::before{background:var(--cream)}
+.pack.feat .btn:hover{color:var(--petrol);border-color:var(--cream)}
+.badge{align-self:flex-start;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;background:var(--coral);color:var(--cream);padding:5px 11px;border-radius:999px}
+.seal{position:absolute;right:22px;top:-34px;width:112px;height:112px}
+.seal svg{width:100%;height:100%;animation:spin 16s linear infinite}
+.seal circle{fill:var(--coral)}
+.seal text{font-family:var(--display);font-size:13px;letter-spacing:2px;fill:var(--cream)}
+.seal::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:var(--cream)}
+@media (max-width:820px){.pk{grid-template-columns:1fr}.seal{width:92px;height:92px;top:-26px}}
+
+/* ---------- Studio ---------- */
+.studio .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:start}
+.studio .left{display:flex;flex-direction:column;gap:26px}
+.big{font-family:var(--serif);font-style:italic;font-size:clamp(32px,3.6vw,50px);line-height:1.12}
+.big .q{color:#6E8C93;transition:color .4s}
+.big .q.lit{color:var(--petrol)}
+.studio .left p:not(.big){color:var(--muted);max-width:48ch}
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.founder{display:flex;flex-direction:column;gap:12px}
+.founder:nth-child(2){margin-top:64px}
+.ph{aspect-ratio:4/5;max-width:100%;background:var(--sea);position:relative;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:96px;color:var(--cream);overflow:hidden;transition:transform .6s var(--ease)}
+.ph.b{background:var(--butter);color:var(--petrol)}
+.founder:hover .ph{transform:rotate(-2deg) scale(1.02)}
+.frame{position:relative}
+.frame::before,.frame::after{content:"";position:absolute;width:26px;height:26px;z-index:1}
+.frame::before{left:-8px;top:-8px;border-top:3px solid var(--petrol);border-left:3px solid var(--petrol)}
+.frame::after{right:-8px;bottom:-8px;border-right:3px solid var(--coral);border-bottom:3px solid var(--coral)}
+.founder b{font-size:18px}
+.founder span{color:var(--muted);font-size:14px}
+@media (max-width:900px){.studio .wrap{grid-template-columns:1fr;gap:48px}}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--petrol);color:var(--cream);overflow:hidden}
+.contact .wrap{padding-block:120px 40px}
+.contact .eyebrow{color:var(--sea)}
+.contact h2{font-size:clamp(56px,10.5vw,160px);line-height:.86;margin-top:22px}
+.contact h2 .serif{color:var(--butter);font-size:.85em}
+.ct-row{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px}
+.contact .btn{background:var(--coral);border-color:var(--coral);font-size:17px;padding:16px 30px}
+.contact .btn::before{background:var(--cream)}
+.contact .btn:hover{color:var(--petrol);border-color:var(--cream)}
+.contact .btn.ghost{background:transparent;border-color:var(--sea);color:var(--cream)}
+.lines{margin-top:64px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.line{border-top:1px solid var(--line-dark);padding-top:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.line .eyebrow{font-size:11px}
+.line .val{font-size:clamp(18px,1.8vw,22px);font-weight:500;overflow-wrap:anywhere}
+.line a.val{background:linear-gradient(var(--butter),var(--butter)) no-repeat 0 100%/0 2px;transition:background-size .4s var(--ease),color .3s}
+.line a.val:hover{background-size:100% 2px;color:var(--butter)}
+.line .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.copy{font-size:13px;font-weight:700;color:var(--cream);border:1.5px solid var(--line-dark);border-radius:999px;padding:5px 12px;transition:border-color .3s,color .3s}
+.copy:hover{border-color:var(--coral);color:var(--coral)}
+.mega{margin-top:90px;color:var(--cream)}
+.mega svg{width:100%;height:auto;display:block}
+.mega.built .m{transform-box:fill-box;animation:megain 1.1s var(--ease) both;animation-delay:calc(var(--k) * .09s)}
+.mega.built .m.dt{animation-name:dotdrop;animation-duration:1s;animation-delay:.7s}
+@keyframes megain{from{transform:translateY(105%)}}
+@keyframes dotdrop{0%{transform:translateY(-500%)}60%{transform:translateY(0)}75%{transform:translateY(-35%)}100%{transform:none}}
+.mega-mask{overflow:hidden}
+footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--sea)}
+@media (max-width:860px){.lines{grid-template-columns:1fr}}
+@media (max-width:640px){.sec{padding-block:84px}.stage-wrap{height:auto}}
+
+[hidden]{display:none!important}
+
+/* ---------- Brief form ---------- */
+.brief-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:start}
+.brief-intro{display:flex;flex-direction:column;gap:22px;align-items:flex-start;position:sticky;top:110px}
+.brief-intro p{color:var(--muted);max-width:40ch}
+.form,.sent{background:var(--paper);padding:40px;position:relative}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:28px 24px}
+.form::before,.form::after,.sent::before,.sent::after{content:"";position:absolute;width:26px;height:26px}
+.form::before,.sent::before{left:-8px;top:-8px;border-top:3px solid var(--petrol);border-left:3px solid var(--petrol)}
+.form::after,.sent::after{right:-8px;bottom:-8px;border-right:3px solid var(--coral);border-bottom:3px solid var(--coral)}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0;border:0}
+.full{grid-column:1/-1}
+.field label,.field legend{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.field input,.field select,.field textarea{font:inherit;font-size:17px;color:var(--petrol);background:transparent;border:0;border-bottom:2px solid var(--line);border-radius:0;padding:10px 0;width:100%;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+.field select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231D4A5E' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 4px center/12px;padding-right:24px;cursor:pointer}
+.field textarea{resize:vertical;min-height:120px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--coral)}
+.field input::placeholder,.field textarea::placeholder{color:#7F969C}
+.checks{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.check{position:relative}
+.check input{position:absolute;opacity:0;width:1px;height:1px}
+.check span{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--petrol);border-radius:999px;padding:10px 18px;font-weight:500;cursor:pointer;transition:background .25s,color .25s}
+.check span::before{content:"";width:10px;height:10px;border:1.5px solid currentColor;transition:background .25s,border-color .25s}
+.check input:checked + span{background:var(--petrol);color:var(--cream)}
+.check input:checked + span::before{background:var(--coral);border-color:var(--coral)}
+.check input:focus-visible + span{outline:3px solid var(--coral);outline-offset:2px}
+.form-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.form .btn{background:var(--coral);border-color:var(--coral)}
+.form .btn::before{background:var(--petrol)}
+.form .btn:hover{border-color:var(--petrol)}
+.form .btn:disabled{opacity:.6;cursor:wait}
+.f-status{font-size:15px;color:var(--muted);flex:1;min-width:200px}
+.f-status.err{color:#B4432B}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px}
+.sent{background:var(--petrol);color:var(--cream);display:flex;flex-direction:column;gap:14px;padding-block:64px}
+.sent h3{font-size:clamp(56px,7vw,88px)}
+.sent p{color:var(--sea);max-width:40ch}
+@media (max-width:960px){.brief-grid{grid-template-columns:1fr;gap:40px}.brief-intro{position:static}}
+@media (max-width:640px){.form{grid-template-columns:1fr;padding:30px 22px}}
+
+/* ---------- Assistant ---------- */
+.bot-fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;align-items:center;gap:10px;background:var(--petrol);color:var(--cream);padding:7px 20px 7px 7px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:0 20px 40px -16px rgba(22,50,63,.7);transition:transform .35s var(--ease)}
+.bot-fab:hover{transform:translateY(-4px)}
+.bot-av{width:42px;height:42px;flex:none;background:var(--coral);color:var(--cream);display:grid;place-items:center;font-family:var(--display);font-size:20px;position:relative}
+.bot-av::after{content:"";position:absolute;right:-3px;bottom:-3px;width:11px;height:11px;background:#6FCF7A;border:2px solid var(--petrol)}
+.bot{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:81;width:min(390px,calc(100vw - 32px));height:min(580px,calc(100vh - 110px));background:var(--cream);border:2px solid var(--petrol);display:flex;flex-direction:column;box-shadow:0 40px 80px -24px rgba(22,50,63,.65);transform-origin:bottom right;animation:botin .45s var(--ease) both}
+@keyframes botin{from{opacity:0;transform:translateY(20px) scale(.92)}}
+.bot-head{background:var(--petrol);color:var(--cream);padding:12px 8px 12px 14px;display:flex;align-items:center;gap:12px}
+.bot-head b{font-size:16px;display:block}
+.bot-head small{display:block;font-size:12px;color:var(--sea)}
+.bot-x{margin-left:auto;width:44px;height:44px;display:grid;place-items:center;color:var(--cream)}
+.bot-x svg{width:18px;height:18px}
+.bot-log{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.msg{max-width:86%;padding:11px 14px;font-size:15px;line-height:1.45;animation:fadeup .35s var(--ease) both}
+.msg.b{background:var(--paper);align-self:flex-start}
+.msg.u{background:var(--petrol);color:var(--cream);align-self:flex-end}
+.msg a{text-decoration:underline;text-underline-offset:2px}
+.msg.rec{background:var(--butter);align-self:stretch;max-width:100%}
+.msg.rec b{display:block;font-family:var(--display);font-weight:400;font-size:30px;line-height:1;text-transform:uppercase;margin:4px 0 6px}
+.msg.rec small{display:block;margin-top:6px;font-weight:700}
+.typing{display:flex;gap:5px;align-self:flex-start;background:var(--paper);padding:14px}
+.typing i{width:7px;height:7px;background:var(--coral);animation:hop 1s var(--ease) infinite;animation-delay:calc(var(--k) * .15s)}
+.bot-opts{padding:12px 16px 16px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);background:var(--cream)}
+.opt{border:1.5px solid var(--petrol);border-radius:999px;padding:8px 14px;min-height:40px;font-size:14px;font-weight:500;text-align:left;transition:background .25s,color .25s,border-color .25s}
+.opt:hover,.opt.on{background:var(--petrol);color:var(--cream)}
+.opt.go{background:var(--coral);border-color:var(--coral);color:var(--cream)}
+.opt.go:hover{background:var(--petrol);border-color:var(--petrol)}
+.opt:disabled{opacity:.4;cursor:default;background:transparent;color:var(--petrol)}
+@media (max-width:560px){
+  .bot{right:0;left:0;bottom:0;width:100%;height:86vh;border-width:2px 0 0}
+  .bot-fab span.lbl{display:none}.bot-fab{padding:7px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="fizz" viewBox="0 0 420 200">
+    <g fill="currentColor"><rect x="0" y="0" width="40" height="200"/><rect x="0" y="0" width="92" height="36"/><rect x="0" y="84" width="82" height="34"/><rect x="106" y="0" width="40" height="200"/><path d="M160 0H256V36L212 164H256V200H160V164L204 36H160Z"/><path d="M270 0H366V36L322 164H366V200H270V164L314 36H270Z"/></g>
+    <rect class="ldot" x="380" y="160" width="40" height="40" fill="#E06A4E"/>
+  </symbol>
+  <symbol id="arr" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+</svg>
+
+<header class="nav band" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Fizz. Creative Studio, home"><svg viewBox="0 0 420 200"><use href="#fizz"/></svg></a>
+    <ul>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#process" data-i18n="nav_process">Process</a></li>
+      <li><a href="#packages" data-i18n="nav_packages">Packages</a></li>
+      <li><a href="#studio" data-i18n="nav_studio">Studio</a></li>
+    </ul>
+    <div class="nav-r">
+      <div class="lang" role="group" aria-label="Language">
+        <span class="pill" id="pill"></span>
+        <button type="button" data-lang="en" class="on">EN</button><button type="button" data-lang="tr">TR</button><button type="button" data-lang="sq">SQ</button>
+      </div>
+      <a class="btn" href="#brief" data-i18n="nav_cta">Start a project</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero band">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <h1 id="h1" data-i18n="hero_h1">We make your brand go <span class="hl">psst</span><span class="dot">.</span></h1>
+        <p class="lead fade-in" data-i18n="hero_lead"><span class="serif">Fizz.</span> is a creative studio. We design every piece of your brand in one place: the logo, the Instagram feed, the website and the ads.</p>
+        <div class="ctas fade-in">
+          <a class="btn mag" href="#brief"><span data-i18n="cta_start">Start a project</span><svg class="arr"><use href="#arr"/></svg></a>
+          <a class="btn ghost mag" href="#services" data-i18n="cta_see">See what we do</a>
+        </div>
+        <div class="meta fade-in"><span data-i18n="hero_meta">Working online, worldwide</span></div>
+      </div>
+
+      <div class="stage-wrap" id="stageWrap" aria-hidden="true">
+        <div class="stage" id="stage">
+          <div class="piece p-logo"><div class="pop" style="height:100%"><div class="inner">
+            <span class="tag">Branding</span>
+            <svg viewBox="0 0 150 200"><g fill="currentColor"><rect width="40" height="200"/><rect width="92" height="36"/><rect y="84" width="82" height="34"/></g><rect x="106" y="160" width="40" height="40" fill="#E06A4E"/></svg>
+            <div><b data-i18n="st_brand">Your brand.</b><div class="sw" style="margin-top:12px"><i style="background:#1D4A5E"></i><i style="background:#E06A4E"></i><i style="background:#A9C3C5"></i><i style="background:#F6F1EA"></i></div></div>
+          </div></div></div>
+
+          <div class="piece p-post"><div class="pop" style="height:100%"><div class="inner">
+            <span class="tag">Social</span>
+            <div class="top"><i></i>@yourbrand</div>
+            <div class="img"><span class="sun"></span><b data-i18n="st_post">Grand opening.</b></div>
+            <div class="bar">
+              <svg class="heart" viewBox="0 0 24 24" fill="#E06A4E"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg>
+            </div>
+          </div></div></div>
+
+          <div class="piece p-web"><div class="pop" style="height:100%"><div class="inner">
+            <span class="tag">Web</span>
+            <div class="screen">
+              <div class="bar"><i></i><s></s></div>
+              <b data-i18n="st_web">Book a table.</b>
+              <span class="ln"></span><span class="ln"></span>
+              <div class="pic"></div>
+              <div class="cta" data-i18n="st_web_btn">Reserve</div>
+            </div>
+          </div></div></div>
+
+          <div class="piece p-grow"><div class="pop" style="height:100%"><div class="inner">
+            <span class="tag">Growth</span>
+            <small data-i18n="st_grow">Found nearby</small>
+            <div class="bars"><i style="--k:0;height:30%"></i><i style="--k:1;height:45%"></i><i style="--k:2;height:40%"></i><i style="--k:3;height:65%"></i><i style="--k:4;height:80%"></i><i style="--k:5;height:100%"></i></div>
+          </div></div></div>
+
+          <div class="sticker">
+            <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+              <text><textPath href="#circ">MAKE IT FIZZ · SEEN · HEARD · CHOSEN ·</textPath></text></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAPES -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape a"><div class="row" id="rowA"><span>Branding<i></i>Social media<i></i>Web design<i></i>Growth<i></i>Make it fizz<i></i></span></div></div>
+    <div class="tape b"><div class="row" id="rowB"><span><em>Seen</em>.<i></i><em>Heard</em>.<i></i><em>Chosen</em>.<i></i>Meta Ads<i></i>Local SEO<i></i>Google Ads<i></i></span></div></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="sec band" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-i18n="svc_eye">What we do</span>
+        <h2 class="rv" data-i18n="svc_h2">Four things, done <span class="hl">properly</span><span class="dot">.</span></h2></div>
+        <p class="rv" data-i18n="svc_p">Pick one, or hand us all four. When it all comes from the same people, your sign, your feed, your website and your ads look like they belong together.</p>
+      </div>
+      <div class="svc">
+        <article class="card tilt rv">
+          <div class="glyph g-brand"><svg viewBox="0 0 150 200" aria-hidden="true"><g fill="currentColor"><rect class="bld v" width="40" height="200"/><rect class="bld" width="92" height="36"/><rect class="bld" y="84" width="82" height="34"/></g><rect class="d" x="106" y="160" width="40" height="40" fill="#E06A4E"/></svg></div>
+          <h3>Branding<span class="dot">.</span></h3>
+          <p data-i18n="b_d">We work out who you are, how you look and how you talk.</p>
+          <ul>
+            <li data-i18n="b_1">Logo &amp; logo suite</li>
+            <li data-i18n="b_2">Color palette &amp; typography</li>
+            <li data-i18n="b_3">Brand voice &amp; tagline</li>
+            <li data-i18n="b_4">Menus, signage, cards &amp; print</li>
+            <li data-i18n="b_5">Brand guidelines</li>
+          </ul>
+        </article>
+        <article class="card tilt rv" style="--rd:.08s">
+          <div class="glyph" aria-hidden="true"><div class="g-feed"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i></div></div>
+          <h3>Social media<span class="dot">.</span></h3>
+          <p data-i18n="s_d">A feed that looks planned, posts that get saved and stories people tap through.</p>
+          <ul>
+            <li data-i18n="s_1">Monthly content plan</li>
+            <li data-i18n="s_2">Post &amp; story design</li>
+            <li data-i18n="s_3">Photo &amp; reel shoots</li>
+            <li data-i18n="s_4">Captions &amp; publishing</li>
+            <li data-i18n="s_5">Monthly results report</li>
+          </ul>
+        </article>
+        <article class="card tilt rv" style="--rd:.16s">
+          <div class="glyph g-web" aria-hidden="true"><div class="win"><i><b></b><b></b><b></b></i><div><s></s><s></s><s></s></div></div></div>
+          <h3>Web design<span class="dot">.</span></h3>
+          <p data-i18n="w_d">Fast, clear websites that turn a visit into a booking, a call or a table.</p>
+          <ul>
+            <li data-i18n="w_1">Website design &amp; build</li>
+            <li data-i18n="w_2">Online menus &amp; booking</li>
+            <li data-i18n="w_3">Mobile-first, fast loading</li>
+            <li data-i18n="w_4">SEO-ready structure</li>
+            <li data-i18n="w_5">Care &amp; updates</li>
+          </ul>
+        </article>
+        <article class="card tilt rv" style="--rd:.24s">
+          <div class="glyph g-grow" aria-hidden="true"><i style="--k:0;height:28%"></i><i style="--k:1;height:42%"></i><i style="--k:2;height:36%"></i><i style="--k:3;height:60%"></i><i style="--k:4;height:78%"></i><i style="--k:5;height:100%"></i></div>
+          <h3>Growth<span class="dot">.</span></h3>
+          <p data-i18n="g_d">Get found on Google and seen on Instagram by people nearby who are ready to visit.</p>
+          <ul>
+            <li data-i18n="g_1">Meta Ads (Instagram &amp; Facebook)</li>
+            <li>Google Ads</li>
+            <li>Local SEO</li>
+            <li>Google Business Profile</li>
+            <li data-i18n="g_5">Monthly reporting</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="who sec band">
+    <span class="ghost-txt" aria-hidden="true">Visit.</span>
+    <div class="wrap">
+      <div>
+        <h2 class="rv" data-i18n="who_h2">Made for places <span class="serif">people visit</span><span class="dot">.</span></h2>
+        <p class="rv" data-i18n="who_p">We know businesses where the first impression happens on a phone and the second one at the door.</p>
+      </div>
+      <div class="chips rv">
+        <span class="chip on" style="--k:0" data-i18n="c1">Cafés</span>
+        <span class="chip" style="--k:1" data-i18n="c2">Restaurants</span>
+        <span class="chip" style="--k:2" data-i18n="c3">Dental clinics</span>
+        <span class="chip on" style="--k:3" data-i18n="c4">Beauty salons</span>
+        <span class="chip" style="--k:4" data-i18n="c5">Hotels</span>
+        <span class="chip" style="--k:5" data-i18n="c6">Bakeries</span>
+        <span class="chip" style="--k:6" data-i18n="c7">Boutiques</span>
+        <span class="chip" style="--k:7" data-i18n="c8">Fitness studios</span>
+        <span class="chip more" style="--k:8" data-i18n="c9">And more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process band" id="process">
+    <div class="pin" id="pin">
+      <div class="pin-inner">
+        <div class="wrap" style="width:100%">
+          <div class="sec-head" style="margin-bottom:44px">
+            <div><span class="eyebrow" data-i18n="pr_eye">Process</span>
+            <h2 data-i18n="pr_h2">How we work<span class="dot">.</span></h2></div>
+            <p data-i18n="pr_p">Four steps, from the first coffee to launch day.</p>
+          </div>
+          <div class="track" id="track">
+            <div class="step"><span class="n">01</span><h3 data-i18n="p1_t">Discover<span class="dot">.</span></h3><p data-i18n="p1_d">We visit you, meet your customers and study your competitors.</p></div>
+            <div class="step"><span class="n">02</span><h3 data-i18n="p2_t">Design<span class="dot">.</span></h3><p data-i18n="p2_d">Logo, colors, voice and a first set of posts, shown to you in one presentation.</p></div>
+            <div class="step"><span class="n">03</span><h3 data-i18n="p3_t">Launch<span class="dot">.</span></h3><p data-i18n="p3_d">New sign, new feed, new website. Everything goes live together.</p></div>
+            <div class="step"><span class="n">04</span><h3 data-i18n="p4_t">Grow<span class="dot">.</span></h3><p data-i18n="p4_d">We keep posting, running ads and improving every month.</p></div>
+          </div>
+          <div class="rail" id="rail"><i></i><b></b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packs sec band" id="packages">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-i18n="pk_eye">Packages</span>
+        <h2 class="rv" data-i18n="pk_h2">Pick your <span class="serif">fizz</span><span class="dot">.</span></h2></div>
+        <p class="rv" data-i18n="pk_p">Most of our clients start with one of these four packages.</p>
+      </div>
+      <div class="pk">
+        <article class="pack rv">
+          <h3>Fresh start</h3>
+          <p class="for" data-i18n="k1_f">For new openings and rebrands.</p>
+          <ul><li data-i18n="k1_1">Logo &amp; brand identity</li><li data-i18n="k1_2">Brand guidelines</li><li data-i18n="k1_3">Print kit: cards, menu, sign</li><li data-i18n="k1_4">Instagram profile setup</li></ul>
+          <a class="btn ghost" href="#brief" data-i18n="ask">Ask for a quote</a>
+        </article>
+        <article class="pack feat rv" style="--rd:.08s">
+          <div class="seal" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="circ2" d="M100 100m-70 0a70 70 0 1 1 140 0a70 70 0 1 1-140 0"/></defs><circle cx="100" cy="100" r="98"/><text><textPath href="#circ2" data-i18n="seal">MOST POPULAR · MOST POPULAR · MOST POPULAR ·</textPath></text></svg></div>
+          <span class="badge" data-i18n="popular">Most popular</span>
+          <h3>Full fizz</h3>
+          <p class="for" data-i18n="k2_f">Brand, feed and website in one go.</p>
+          <ul><li data-i18n="k2_1">Everything in Fresh start</li><li data-i18n="k2_2">Website with menu or booking</li><li data-i18n="k2_3">First month of social media</li><li data-i18n="k2_4">Launch shoot</li></ul>
+          <a class="btn" href="#brief" data-i18n="ask">Ask for a quote</a>
+        </article>
+        <article class="pack rv">
+          <h3>Monthly feed</h3>
+          <p class="for" data-i18n="k3_f">For brands that need a steady voice.</p>
+          <ul><li data-i18n="k3_1">12 posts &amp; 8 stories a month</li><li data-i18n="k3_2">One shoot day a month</li><li data-i18n="k3_3">Captions &amp; publishing</li><li data-i18n="k3_4">Monthly report</li></ul>
+          <a class="btn ghost" href="#brief" data-i18n="ask">Ask for a quote</a>
+        </article>
+        <article class="pack rv" style="--rd:.08s">
+          <h3>Ads management</h3>
+          <p class="for" data-i18n="k4_f">For brands ready to reach more people nearby.</p>
+          <ul><li data-i18n="k4_1">Meta Ads campaigns (Instagram &amp; Facebook)</li><li data-i18n="k4_2">Google Ads &amp; Local SEO</li><li data-i18n="k4_3">Google Business Profile care</li><li data-i18n="k4_4">Monthly report &amp; strategy call</li></ul>
+          <a class="btn ghost" href="#brief" data-i18n="ask">Ask for a quote</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO -->
+  <section class="studio sec band" id="studio">
+    <div class="wrap">
+      <div class="left">
+        <span class="eyebrow" data-i18n="st_eye">The studio</span>
+        <p class="big" id="quote" data-i18n="st_big">Fizz is a two-person studio. You talk to the people who design your brand, not to an account manager.</p>
+        <p data-i18n="st_p">We kept seeing good businesses get overlooked because of old logos and empty Instagram accounts, so we started Fizz. We take on a few clients at a time, which gives every project the time it needs.</p>
+      </div>
+      <div class="founders">
+        <div class="founder rv"><div class="frame"><div class="ph" role="img" aria-label="Göktuğ">G</div></div><b>Göktuğ</b><span data-i18n="cofounder">Co-founder</span></div>
+        <div class="founder rv" style="--rd:.12s"><div class="frame"><div class="ph b" role="img" aria-label="Azra">A</div></div><b>Azra</b><span data-i18n="cofounder">Co-founder</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEF FORM -->
+  <section class="brief sec band" id="brief">
+    <div class="wrap brief-grid">
+      <div class="brief-intro">
+        <span class="eyebrow" data-i18n="bf_eye">Project brief</span>
+        <h2 data-i18n="bf_h2">Tell us what you <span class="hl">need</span><span class="dot">.</span></h2>
+        <p data-i18n="bf_p">Fill in the form and we'll reply by email. We read every message ourselves.</p>
+        <button class="btn ghost" type="button" id="openBot2" data-i18n="bf_bot">Not sure yet? Ask the assistant</button>
+      </div>
+      <div>
+        <form class="form" id="briefForm" novalidate>
+          <div class="field"><label for="f-name" data-i18n="f_name">Your name</label><input id="f-name" name="Name" autocomplete="name" required></div>
+          <div class="field"><label for="f-biz" data-i18n="f_biz">Business name</label><input id="f-biz" name="Business" autocomplete="organization"></div>
+          <div class="field"><label for="f-email" data-i18n="f_email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone" data-i18n="f_phone">Phone or WhatsApp (optional)</label><input id="f-phone" name="Phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-type" data-i18n="f_type">Type of business</label><select id="f-type" name="Business type"></select></div>
+          <div class="field"><label for="f-pack" data-i18n="f_pack">Package</label><select id="f-pack" name="Package"></select></div>
+          <fieldset class="field full"><legend data-i18n="f_need">What do you need?</legend>
+            <div class="checks">
+              <label class="check"><input type="checkbox" id="s-brand" name="Services" value="Branding"><span>Branding</span></label>
+              <label class="check"><input type="checkbox" id="s-social" name="Services" value="Social media"><span>Social media</span></label>
+              <label class="check"><input type="checkbox" id="s-web" name="Services" value="Web design"><span>Web design</span></label>
+              <label class="check"><input type="checkbox" id="s-growth" name="Services" value="Growth"><span>Growth</span></label>
+            </div>
+          </fieldset>
+          <div class="field full"><label for="f-msg" data-i18n="f_msg">Tell us a bit more</label><textarea id="f-msg" name="Message" rows="5" data-ph="f_ph"></textarea></div>
+          <input class="hp" type="text" id="f-hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-foot full">
+            <button class="btn" type="submit" id="f-send"><span data-i18n="f_send">Send</span><svg class="arr"><use href="#arr"/></svg></button>
+            <p class="f-status" id="f-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+        <div class="sent" id="sent" hidden>
+          <h3 id="sentT"></h3>
+          <p id="sentP"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact band" id="contact">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="ct_eye">Contact</span>
+      <h2 class="rv" data-i18n="ct_h2">Ready to <span class="serif">go</span> psst<span class="dot">?</span></h2>
+      <div class="ct-row rv">
+        <a class="btn mag" href="mailto:fizzcreativestudio@gmail.com"><span data-i18n="ct_mail">Email us</span><svg class="arr"><use href="#arr"/></svg></a>
+        <a class="btn ghost mag" href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener" data-i18n="ct_dm">DM us on Instagram</a>
+      </div>
+      <div class="lines">
+        <div class="line">
+          <span class="eyebrow" data-i18n="ct_email">Email</span>
+          <div class="row"><a class="val" id="em" href="mailto:fizzcreativestudio@gmail.com">fizzcreativestudio@gmail.com</a><button class="copy" type="button" id="copyBtn" data-i18n="copy">Copy</button></div>
+        </div>
+        <div class="line">
+          <span class="eyebrow">Instagram</span>
+          <div class="row"><a class="val" href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">@fizz.creativestudio</a></div>
+        </div>
+      </div>
+
+      <div class="mega" id="mega" aria-hidden="true">
+        <svg viewBox="0 0 420 200">
+          <g fill="currentColor">
+            <g class="mega-mask"><rect class="m" style="--k:0" x="0" y="0" width="40" height="200"/><rect class="m" style="--k:0" x="0" y="0" width="92" height="36"/><rect class="m" style="--k:0" x="0" y="84" width="82" height="34"/></g>
+            <rect class="m" style="--k:1" x="106" y="0" width="40" height="200"/>
+            <path class="m" style="--k:2" d="M160 0H256V36L212 164H256V200H160V164L204 36H160Z"/>
+            <path class="m" style="--k:3" d="M270 0H366V36L322 164H366V200H270V164L314 36H270Z"/>
+          </g>
+          <rect class="m dt" x="380" y="160" width="40" height="40" fill="#E06A4E"/>
+        </svg>
+      </div>
+      <footer>
+        <span>© 2026 Fizz. Creative Studio</span>
+        <span class="serif" style="font-size:20px;color:var(--butter)">Make it fizz.</span>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<!-- ASSISTANT -->
+<button class="bot-fab" id="botFab" type="button" aria-controls="bot" aria-expanded="false"><span class="bot-av" aria-hidden="true">F.</span><span class="lbl" id="fabLbl">Need help?</span></button>
+<div class="bot" id="bot" role="dialog" aria-labelledby="botTitle" hidden>
+  <div class="bot-head">
+    <span class="bot-av" aria-hidden="true">F.</span>
+    <div><b id="botTitle">Fizz assistant</b><small id="botSub">Answers in seconds</small></div>
+    <button class="bot-x" id="botX" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4"/></svg></button>
+  </div>
+  <div class="bot-log" id="botLog" aria-live="polite"></div>
+  <div class="bot-opts" id="botOpts"></div>
+</div>
+
+<script>
+(function(){
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(pointer: fine)').matches;
+
+/* ---------- Translations (English is read from the page itself) ---------- */
+const T = {
+tr:{
+  nav_services:"Hizmetler",nav_process:"Süreç",nav_packages:"Paketler",nav_studio:"Stüdyo",nav_cta:"Proje başlat",
+  hero_h1:'Markanız <span class="hl">fısır</span> fısır konuşulsun<span class="dot">.</span>',
+  hero_lead:'<span class="serif">Fizz.</span> bir yaratıcı stüdyo. Logonuzdan Instagram\'ınıza, web sitenizden reklamlarınıza kadar markanızın her parçasını tek elden tasarlıyoruz.',
+  cta_start:"Proje başlat",cta_see:"Neler yapıyoruz",hero_meta:"Online çalışıyoruz, nerede olursanız olun",
+  st_brand:"Markanız.",st_post:"Büyük açılış.",st_web:"Masanızı ayırtın.",st_web_btn:"Rezervasyon",st_grow:"Yakındakiler sizi buluyor",
+  svc_eye:"Neler yapıyoruz",svc_h2:'Ne gerekiyorsa, <span class="hl">fazlasıyla</span><span class="dot">.</span>',
+  svc_p:"İsterseniz birini seçin, isterseniz dördünü birden bize bırakın. Hepsi aynı elden çıktığı için tabelanızla Instagram'ınız, sitenizle reklamlarınız birbirini tutuyor.",
+  b_d:"Kim olduğunuzu, nasıl göründüğünüzü ve nasıl konuştuğunuzu birlikte belirliyoruz.",
+  b_1:"Logo ve logo ailesi",b_2:"Renk paleti ve yazı karakterleri",b_3:"Marka dili ve slogan",b_4:"Menü, tabela, kartvizit ve basılı işler",b_5:"Marka kılavuzu",
+  s_d:"Her ay planlı paylaşımlar. İnsanların kaydettiği gönderiler, sonuna kadar izlediği hikâyeler.",
+  s_1:"Aylık içerik planı",s_2:"Gönderi ve hikâye tasarımı",s_3:"Fotoğraf ve reels çekimi",s_4:"Metinler ve paylaşım",s_5:"Aylık sonuç raporu",
+  w_d:"Hızlı açılan, kolay anlaşılan siteler. Ziyaretçi girer, masa ayırtır ya da sizi arar.",
+  w_1:"Web sitesi tasarımı ve kurulumu",w_2:"Online menü ve rezervasyon",w_3:"Telefonda kusursuz, hızlı açılış",w_4:"Google'a uygun altyapı",w_5:"Bakım ve güncellemeler",
+  g_d:"Yakınında kahve, kuaför ya da diş hekimi arayan kişi önce sizi görsün. Google'da da, Instagram'da da.",
+  g_1:"Meta Ads (Instagram ve Facebook)",g_5:"Aylık raporlama",
+  who_h2:'Bir sonraki <span class="serif">adımı</span> atmak isteyenler için<span class="dot">.</span>',
+  who_p:"Müşterisini kapıda karşılayan işletmelerle çalışıyoruz. İnsanlar sizi önce telefonda görüyor, sonra kapınızdan giriyor. İkisinde de iyi görünmeniz gerekiyor.",
+  c1:"Kafeler",c2:"Restoranlar",c3:"Diş klinikleri",c4:"Güzellik salonları",c5:"Oteller",c6:"Fırınlar",c7:"Butikler",c8:"Spor salonları",c9:"Ve daha fazlası",
+  pr_eye:"Süreç",pr_h2:'Nasıl çalışıyoruz<span class="dot">.</span>',
+  pr_p:"İlk tanışma kahvesinden yayın gününe kadar dört adımda ilerliyoruz.",
+  p1_t:'Keşfet<span class="dot">.</span>',p1_d:"Sizi yerinizde ziyaret ediyoruz. Müşterilerinizi tanıyor, rakiplerinize bakıyoruz.",
+  p2_t:'Tasarla<span class="dot">.</span>',p2_d:"Logo, renkler, marka dili ve ilk gönderiler. Hepsini tek bir sunumda gösteriyoruz.",
+  p3_t:'Yayına al<span class="dot">.</span>',p3_d:"Yeni tabela, yeni Instagram, yeni site. Hepsi birlikte yayına giriyor.",
+  p4_t:'Büyüt<span class="dot">.</span>',p4_d:"Her ay paylaşıyor, reklamları yönetiyor, sonuçlara bakıp neyin işe yaradığını görüyoruz.",
+  pk_eye:"Paketler",pk_h2:'Fizz\'inizi <span class="serif">seçin</span><span class="dot">.</span>',
+  pk_p:"Müşterilerimizin çoğu bu dört paketten biriyle başlıyor.",
+  k1_f:"Yeni açılan ya da kendini yenilemek isteyen işletmeler için.",k1_1:"Logo ve marka kimliği",k1_2:"Marka kılavuzu",k1_3:"Basılı işler: kartvizit, menü, tabela",k1_4:"Instagram hesabının kurulumu",
+  k2_f:"Marka, Instagram ve web sitesi bir arada.",k2_1:"Fresh start'taki her şey",k2_2:"Menülü ya da rezervasyonlu web sitesi",k2_3:"Sosyal medyanın ilk ayı",k2_4:"Açılış çekimi",
+  k3_f:"Instagram'ı her ay düzenli yürüsün isteyenler için.",k3_1:"Ayda 12 gönderi ve 8 hikâye",k3_2:"Ayda bir çekim günü",k3_3:"Metinler ve paylaşım",k3_4:"Aylık rapor",
+  k4_f:"Çevresindeki daha çok kişiye ulaşmak isteyenler için.",k4_1:"Meta Ads kampanyaları (Instagram ve Facebook)",k4_2:"Google Ads ve Local SEO",k4_3:"Google Business Profile yönetimi",k4_4:"Aylık rapor ve strateji görüşmesi",
+  ask:"Teklif iste",popular:"En çok tercih edilen",seal:"EN SEVİLEN · EN SEVİLEN · EN SEVİLEN ·",
+  st_eye:"Stüdyo",st_big:"Fizz iki kişilik bir stüdyo. Arada müşteri temsilcisi yok, markanızı tasarlayan kişilerle doğrudan konuşuyorsunuz.",
+  st_p:"İyi işletmelerin eski logolar ve boş Instagram hesapları yüzünden gözden kaçtığını gördük, Fizz'i bu yüzden kurduk. Aynı anda az sayıda müşteriyle çalışıyoruz, böylece her işe gereken zamanı ayırabiliyoruz.",
+  cofounder:"Kurucu ortak",
+  bf_eye:"Proje formu",bf_h2:'Ne istediğinizi <span class="hl">anlatın</span><span class="dot">.</span>',
+  bf_p:"Formu doldurun, size e-postayla dönelim. Her mesajı kendimiz okuyoruz.",bf_bot:"Emin değil misiniz? Asistana sorun",
+  f_name:"Adınız",f_biz:"İşletmenizin adı",f_email:"E-posta",f_phone:"Telefon ya da WhatsApp (isteğe bağlı)",f_type:"İşletme türü",f_pack:"Paket",
+  f_need:"Neye ihtiyacınız var?",f_msg:"Biraz daha anlatın",f_send:"Gönder",
+  ct_eye:"İletişim",ct_h2:'Konuşulmaya <span class="serif">hazır</span> mısınız<span class="dot">?</span>',
+  ct_mail:"Bize yazın",ct_dm:"Instagram'dan yazın",ct_email:"E-posta",copy:"Kopyala"
+},
+sq:{
+  nav_services:"Shërbimet",nav_process:"Procesi",nav_packages:"Paketat",nav_studio:"Studio",nav_cta:"Nis një projekt",
+  hero_h1:'Marka juaj, në <span class="hl">gojë</span> të të gjithëve<span class="dot">.</span>',
+  hero_lead:'<span class="serif">Fizz.</span> është një studio kreative për branding, rrjete sociale, dizajn uebi dhe rritje. U japim bizneseve një pamje që bie në sy dhe një zë që mbahet mend.',
+  cta_start:"Nis një projekt",cta_see:"Çfarë bëjmë",hero_meta:"Punojmë online, kudo që jeni",
+  st_brand:"Marka juaj.",st_post:"Hapja e madhe.",st_web:"Rezervo tavolinën.",st_web_btn:"Rezervo",st_grow:"Ju gjejnë përreth",
+  svc_eye:"Çfarë bëjmë",svc_h2:'Katër gjëra, të bëra <span class="hl">mirë</span><span class="dot">.</span>',
+  svc_p:"Zgjidhni një, ose na i lini të katërtat. Gjithçka që bëjmë ndjek një markë të vetme, që tabela, profili, faqja dhe reklamat tuaja më në fund të duken si i njëjti biznes.",
+  b_d:"Kush jeni, si dukeni dhe si flisni, e ndërtuar për të zgjatur.",
+  b_1:"Logo dhe familja e logove",b_2:"Paleta e ngjyrave dhe tipografia",b_3:"Zëri i markës dhe slogani",b_4:"Menu, tabela, kartvizita dhe print",b_5:"Udhëzuesi i markës",
+  s_d:"Një profil që duket i planifikuar, postime që ruhen dhe stories që shihen deri në fund.",
+  s_1:"Plan mujor i përmbajtjes",s_2:"Dizajn postimesh dhe stories",s_3:"Fotografi dhe xhirime reels",s_4:"Tekste dhe publikim",s_5:"Raport mujor i rezultateve",
+  w_d:"Faqe të shpejta e të qarta që e kthejnë një vizitë në rezervim, telefonatë ose tavolinë të zënë.",
+  w_1:"Dizajn dhe ndërtim faqeje",w_2:"Menu online dhe rezervime",w_3:"Së pari për celular, ngarkim i shpejtë",w_4:"Strukturë gati për SEO",w_5:"Mirëmbajtje dhe përditësime",
+  g_d:"Gjenduni në Google dhe shihuni në Instagram nga njerëzit afër jush, gati për t'ju vizituar.",
+  g_1:"Meta Ads (Instagram dhe Facebook)",g_5:"Raportim mujor",
+  who_h2:'Për vendet që <span class="serif">njerëzit vizitojnë</span><span class="dot">.</span>',
+  who_p:"I njohim bizneset ku përshtypja e parë ndodh në telefon, e dyta te dera.",
+  c1:"Kafene",c2:"Restorante",c3:"Klinika dentare",c4:"Sallone bukurie",c5:"Hotele",c6:"Furra",c7:"Butikë",c8:"Studio fitnesi",c9:"Dhe më shumë",
+  pr_eye:"Procesi",pr_h2:'Si punojmë<span class="dot">.</span>',
+  pr_p:"Katër hapa nga kafeja e parë te një markë që ecën vetë.",
+  p1_t:'Zbulo<span class="dot">.</span>',p1_d:"Ju vizitojmë, njohim klientët tuaj dhe studiojmë konkurrentët.",
+  p2_t:'Dizajno<span class="dot">.</span>',p2_d:"Logo, ngjyra, zë dhe postimet e para, të paraqitura në një prezantim.",
+  p3_t:'Lanso<span class="dot">.</span>',p3_d:"Tabelë e re, profil i ri, faqe e re. Gjithçka del live së bashku.",
+  p4_t:'Rrit<span class="dot">.</span>',p4_d:"Vazhdojmë të postojmë, të drejtojmë reklama dhe të përmirësojmë çdo muaj.",
+  pk_eye:"Paketat",pk_h2:'Zgjidhni <span class="serif">fizz</span>-in tuaj<span class="dot">.</span>',
+  pk_p:"Shumica e klientëve tanë nisin me një nga këto katër paketa.",
+  k1_f:"Për hapje të reja dhe ribrendim.",k1_1:"Logo dhe identitet marke",k1_2:"Udhëzuesi i markës",k1_3:"Paketë printi: kartvizita, menu, tabelë",k1_4:"Krijimi i profilit në Instagram",
+  k2_f:"Markë, profil dhe faqe, të gjitha njëherësh.",k2_1:"Gjithçka nga Fresh start",k2_2:"Faqe me menu ose rezervim",k2_3:"Muaji i parë i rrjeteve sociale",k2_4:"Xhirim për lansimin",
+  k3_f:"Për markat që duan një zë të qëndrueshëm.",k3_1:"12 postime dhe 8 stories në muaj",k3_2:"Një ditë xhirimi në muaj",k3_3:"Tekste dhe publikim",k3_4:"Raport mujor",
+  k4_f:"Për markat gati të arrijnë më shumë njerëz përreth.",k4_1:"Fushata Meta Ads (Instagram dhe Facebook)",k4_2:"Google Ads dhe Local SEO",k4_3:"Kujdes për Google Business Profile",k4_4:"Raport mujor dhe takim strategjie",
+  ask:"Kërko ofertë",popular:"Më i zgjedhuri",seal:"MË I ZGJEDHURI · MË I ZGJEDHURI ·",
+  st_eye:"Studio",st_big:"Fizz është një studio me dy veta. Flisni drejtpërdrejt me njerëzit që dizajnojnë markën tuaj, jo me një menaxher llogarie.",
+  st_p:"E nisëm Fizz sepse bizneset e mira fshiheshin pas logove të lodhura dhe profileve bosh. Punojmë me pak klientë njëkohësisht, që secili të marrë vëmendjen tonë të plotë.",
+  cofounder:"Co-founder",
+  bf_eye:"Formulari i projektit",bf_h2:'Na tregoni çfarë ju <span class="hl">duhet</span><span class="dot">.</span>',
+  bf_p:"Plotësoni formularin dhe do t'ju përgjigjemi me email. Çdo mesazh e lexojmë vetë.",bf_bot:"Nuk jeni të sigurt? Pyetni asistentin",
+  f_name:"Emri juaj",f_biz:"Emri i biznesit",f_email:"Email",f_phone:"Telefon ose WhatsApp (opsionale)",f_type:"Lloji i biznesit",f_pack:"Paketa",
+  f_need:"Çfarë ju nevojitet?",f_msg:"Na tregoni pak më shumë",f_send:"Dërgo",
+  ct_eye:"Kontakt",ct_h2:'Gati për të <span class="serif">bërë</span> psst<span class="dot">?</span>',
+  ct_mail:"Na shkruani",ct_dm:"Na shkruani në Instagram",ct_email:"Email",copy:"Kopjo"
+}};
+const COPIED = {en:"Copied",tr:"Kopyalandı",sq:"U kopjua"};
+
+const langHooks = [];
+const i18nEls = $$('[data-i18n]');
+const EN = {};
+i18nEls.forEach(el => { if(!(el.dataset.i18n in EN)) EN[el.dataset.i18n] = el.innerHTML; });
+let lang = 'en';
+
+/* ---------- Word splitting for the hero headline ---------- */
+function splitWords(el){
+  const nodes = [...el.childNodes]; el.innerHTML = ''; let i = 0, last = null;
+  const wrap = n => { const w = document.createElement('span'); w.className='w'; const wi = document.createElement('span'); wi.className='wi'; wi.style.setProperty('--i', i++); wi.append(n); w.append(wi); el.append(w); last = wi; };
+  nodes.forEach(n => {
+    if(n.nodeType === 3){
+      n.textContent.split(/(\s+)/).forEach(p => { if(!p) return; if(/^\s+$/.test(p)){ el.append(' '); last = null; } else wrap(document.createTextNode(p)); });
+    } else if(n.classList && n.classList.contains('dot') && last){ last.append(n); }
+    else wrap(n);
+  });
+}
+/* Studio quote: words light up as you scroll */
+let qWords = [];
+function splitQuote(){
+  const q = $('#quote');
+  q.innerHTML = q.textContent.split(/\s+/).map(w => `<span class="q">${w}</span>`).join(' ');
+  qWords = $$('.q', q);
+}
+
+function setLang(l){
+  lang = (l in T || l === 'en') ? l : 'en';
+  document.documentElement.lang = lang;
+  i18nEls.forEach(el => { const k = el.dataset.i18n; el.innerHTML = lang === 'en' ? EN[k] : (T[lang][k] ?? EN[k]); });
+  splitWords($('#h1')); splitQuote(); onScroll();
+  const btns = $$('.lang button'); btns.forEach((b, i) => { const on = b.dataset.lang === lang; b.classList.toggle('on', on); if(on) $('#pill').style.transform = `translateX(${i * 40}px)`; b.setAttribute('aria-pressed', on); });
+  try{ localStorage.setItem('fizz-lang', lang); }catch(e){}
+  langHooks.forEach(f => f());
+  measurePin();
+}
+$$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+/* ---------- Hero dot field: the full stop, multiplied ---------- */
+const cv = $('#field'), cx = cv.getContext('2d');
+let W = 0, H = 0, dpr = 1, mouse = {x: -999, y: -999}, fieldOn = true, t0 = performance.now();
+function sizeField(){ dpr = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr,0,0,dpr,0,0); if(reduce) drawField(0); }
+function drawField(t){
+  cx.clearRect(0,0,W,H);
+  const gap = 30, R = 150;
+  for(let y = gap/2; y < H; y += gap){
+    for(let x = gap/2; x < W; x += gap){
+      const dx = x - mouse.x, dy = y - mouse.y, d = Math.sqrt(dx*dx + dy*dy);
+      const wave = (Math.sin(t*0.0012 + x*0.012 + y*0.018) + 1) / 2;
+      const near = Math.max(0, 1 - d / R);
+      const s = 1.6 + wave * 1.6 + near * 7;
+      if(near > 0.35){ cx.fillStyle = '#E06A4E'; cx.globalAlpha = 0.35 + near * 0.6; }
+      else { cx.fillStyle = '#1D4A5E'; cx.globalAlpha = 0.08 + wave * 0.1 + near * 0.3; }
+      const ox = near ? dx / (d || 1) * near * 10 : 0, oy = near ? dy / (d || 1) * near * 10 : 0;
+      cx.fillRect(x - s/2 + ox, y - s/2 + oy, s, s);
+    }
+  }
+  cx.globalAlpha = 1;
+}
+const hero = $('.hero');
+hero.addEventListener('pointermove', e => {
+  const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  const sr = hero.getBoundingClientRect();
+  $('#stage').style.setProperty('--mx', ((e.clientX - sr.left) / sr.width - .5) * 2);
+  $('#stage').style.setProperty('--my', ((e.clientY - sr.top) / sr.height - .5) * 2);
+});
+hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; $('#stage').style.setProperty('--mx', 0); $('#stage').style.setProperty('--my', 0); });
+new IntersectionObserver(es => { fieldOn = es[0].isIntersecting; }).observe(hero);
+
+/* Scale the hero stage to its column */
+function fitStage(){ const w = $('#stageWrap').clientWidth, s = Math.min(1, (w - 20) / 540); $('#stage').style.transform = `scale(${s})`; $('#stageWrap').style.height = (560 * s) + 'px'; }
+
+/* ---------- Tapes: speed follows scroll ---------- */
+const rowA = $('#rowA'), rowB = $('#rowB');
+[rowA, rowB].forEach(r => { const html = r.innerHTML; r.innerHTML = html.repeat(6); });
+let xA = 0, xB = 0, vel = 0, lastY = scrollY, dir = 1;
+
+/* ---------- Reveal on scroll (content stays visible at rest) ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('play'); io.unobserve(e.target); } }), {rootMargin: '0px 0px 12% 0px'});
+if(!reduce) $$('.rv').forEach(el => io.observe(el));
+const mio = new IntersectionObserver(es => { if(es[0].isIntersecting){ $('#mega').classList.add('built'); mio.disconnect(); } }, {threshold: .3});
+if(!reduce) mio.observe($('#mega'));
+
+/* ---------- Tilt cards + magnetic buttons ---------- */
+if(fine && !reduce){
+  $$('.tilt').forEach(c => {
+    c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 10 + 'deg'); c.style.setProperty('--rx', -((e.clientY - r.top) / r.height - .5) * 10 + 'deg'); });
+    c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+  });
+  $$('.mag').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .25}px,${(e.clientY - r.top - r.height/2) * .35}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+  });
+}
+
+
+/* ---------- Pinned horizontal process ---------- */
+const pin = $('#pin'), track = $('#track'), rail = $('#rail'), steps = $$('.step');
+let pinOn = false, pinDist = 0;
+function measurePin(){
+  pinOn = innerWidth >= 900 && !reduce;
+  pin.classList.toggle('pinned', pinOn);
+  track.style.transform = '';
+  if(pinOn){
+    pinDist = Math.max(0, track.scrollWidth - track.clientWidth);
+    pin.style.height = (innerHeight + pinDist) + 'px';
+  } else { pin.style.height = ''; }
+  onScroll();
+}
+function onScroll(){
+  const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+  $('#progress').style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+  const nav = $('#nav'); if(y > 300 && y > lastY + 4) nav.classList.add('hide'); else if(y < lastY - 4 || y < 300) nav.classList.remove('hide');
+  vel = Math.min(vel + Math.abs(y - lastY) * 0.08, 18); if(y !== lastY) dir = y > lastY ? 1 : -1; lastY = y;
+  if(pinOn){
+    const r = pin.getBoundingClientRect(), p = Math.min(1, Math.max(0, -r.top / (pin.offsetHeight - innerHeight || 1)));
+    track.style.transform = `translateX(${-p * pinDist}px)`;
+    rail.style.setProperty('--p', p);
+    steps.forEach((s, i) => s.classList.toggle('act', p >= i / steps.length - .02 && (i === steps.length - 1 ? true : p < (i + 1) / steps.length)));
+  } else {
+    steps.forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('act', r.top < innerHeight * .6 && r.bottom > innerHeight * .3); });
+  }
+  if(qWords.length){
+    const r = $('#quote').getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / (r.height + innerHeight * .35)));
+    const n = reduce ? qWords.length : Math.round(p * qWords.length);
+    qWords.forEach((w, i) => w.classList.toggle('lit', i < n));
+  }
+}
+addEventListener('scroll', onScroll, {passive: true});
+
+/* ---------- Main loop ---------- */
+function loop(t){
+  if(fieldOn && !reduce) drawField(t - t0);
+  if(!reduce){
+    const sp = (0.6 + vel) * dir; vel *= 0.92;
+    xA -= sp; xB += sp;
+    const wA = rowA.scrollWidth / 6, wB = rowB.scrollWidth / 6;
+    if(xA < -wA) xA += wA; if(xA > 0) xA -= wA;
+    if(xB > 0) xB -= wB; if(xB < -wB) xB += wB;
+    rowA.style.transform = `translateX(${xA}px)`; rowB.style.transform = `translateX(${xB}px)`;
+  }
+  requestAnimationFrame(loop);
+}
+
+/* ---------- Copy email ---------- */
+$('#copyBtn').addEventListener('click', () => {
+  const b = $('#copyBtn'), el = $('#em'), label = b.textContent;
+  const done = () => { b.textContent = COPIED[lang]; setTimeout(() => b.textContent = label, 1600); };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try{ navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback); }catch(e){ fallback(); }
+});
+
+/* ---------- Shared lists (values stay English in the email) ---------- */
+const TYPES = [
+  {v:"Café / restaurant",en:"Café / restaurant",tr:"Kafe / restoran",sq:"Kafene / restorant"},
+  {v:"Dental / health clinic",en:"Dental / health clinic",tr:"Diş / sağlık kliniği",sq:"Klinikë dentare / shëndetësore"},
+  {v:"Beauty salon / barber",en:"Beauty salon / barber",tr:"Güzellik salonu / berber",sq:"Sallon bukurie / berber"},
+  {v:"Hotel",en:"Hotel",tr:"Otel",sq:"Hotel"},
+  {v:"Bakery",en:"Bakery",tr:"Fırın / pastane",sq:"Furrë / pastiçeri"},
+  {v:"Boutique / shop",en:"Boutique / shop",tr:"Butik / mağaza",sq:"Butik / dyqan"},
+  {v:"Fitness studio",en:"Fitness studio",tr:"Spor salonu",sq:"Studio fitnesi"},
+  {v:"Other",en:"Other",tr:"Diğer",sq:"Tjetër"}
+];
+const PACKS = {none:{en:"Not sure yet",tr:"Henüz karar vermedim",sq:"Ende nuk e di"},fresh:"Fresh start",full:"Full fizz",feed:"Monthly feed",ads:"Ads management"};
+const SERVICE_BOX = {logo:'s-brand',insta:'s-social',web:'s-web',ads:'s-growth'};
+const tx = o => typeof o === 'string' ? o : (o[lang] || o.en);
+
+/* ---------- Brief form → email (FormSubmit) ---------- */
+const FORM_TO = 'https://formsubmit.co/ajax/fizzcreativestudio@gmail.com';
+const FT = {
+  en:{ph:"Your goals, when you'd like to start, anything we should know.",sending:"Sending…",req:"Please add your name and a valid email.",fail:"We couldn't send the form right now. Please email us at fizzcreativestudio@gmail.com.",okT:"Thank you",okP:"Your message is on its way. We'll reply by email soon."},
+  tr:{ph:"Hedefleriniz, ne zaman başlamak istediğiniz, bilmemiz gereken her şey.",sending:"Gönderiliyor…",req:"Lütfen adınızı ve geçerli bir e-posta adresi yazın.",fail:"Form şu an gönderilemedi. Lütfen fizzcreativestudio@gmail.com adresine yazın.",okT:"Teşekkürler",okP:"Mesajınız bize ulaştı. En kısa sürede e-postayla döneceğiz."},
+  sq:{ph:"Qëllimet tuaja, kur doni të filloni, çdo gjë që duhet ta dimë.",sending:"Po dërgohet…",req:"Ju lutem shkruani emrin dhe një email të vlefshëm.",fail:"Formulari nuk u dërgua dot tani. Na shkruani te fizzcreativestudio@gmail.com.",okT:"Faleminderit",okP:"Mesazhi juaj u nis. Do t'ju përgjigjemi së shpejti me email."}
+};
+const fType = $('#f-type'), fPack = $('#f-pack'), form = $('#briefForm'), fStatus = $('#f-status');
+function fillSelects(){
+  const tv = fType.value, pv = fPack.value;
+  fType.innerHTML = TYPES.map(t => `<option value="${t.v}">${t[lang]}</option>`).join('');
+  fPack.innerHTML = Object.keys(PACKS).map(k => `<option value="${k === 'none' ? 'Not sure yet' : PACKS[k]}">${tx(PACKS[k])}</option>`).join('');
+  if(tv) fType.value = tv; if(pv) fPack.value = pv;
+  $('#f-msg').placeholder = FT[lang].ph;
+  $('#sentT').innerHTML = FT[lang].okT + '<span class="dot">.</span>'; $('#sentP').textContent = FT[lang].okP;
+  fStatus.textContent = ''; fStatus.classList.remove('err');
+}
+langHooks.push(fillSelects);
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if($('#f-hp').value) return;
+  const name = $('#f-name').value.trim(), email = $('#f-email').value.trim();
+  if(!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ fStatus.textContent = FT[lang].req; fStatus.classList.add('err'); (name ? $('#f-email') : $('#f-name')).focus(); return; }
+  const services = $$('input[name="Services"]:checked').map(c => c.value).join(', ') || '-';
+  const biz = $('#f-biz').value.trim();
+  const data = {
+    Name:name, Business:biz || '-', email, Phone:$('#f-phone').value.trim() || '-',
+    'Business type':fType.value, Package:fPack.value, Services:services,
+    Message:$('#f-msg').value.trim() || '-', Language:lang.toUpperCase(),
+    _subject:`New brief from the website: ${biz || name}`, _template:'table', _captcha:'false'
+  };
+  const btn = $('#f-send'); btn.disabled = true; fStatus.classList.remove('err'); fStatus.textContent = FT[lang].sending;
+  try{
+    const r = await fetch(FORM_TO, {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data)});
+    const j = await r.json().catch(() => ({}));
+    if(!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'failed');
+    form.hidden = true; $('#sent').hidden = false; $('#sent').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+  }catch(err){
+    fStatus.textContent = FT[lang].fail; fStatus.classList.add('err'); btn.disabled = false;
+  }
+});
+/* "Ask for a quote" on a package card preselects that package */
+$$('.pack .btn').forEach(b => b.addEventListener('click', () => { fPack.value = b.closest('.pack').querySelector('h3').textContent.trim(); }));
+
+/* ---------- Assistant: a guided chat that suggests a package and fills the form ---------- */
+const BT = {
+en:{fab:"Need help?",title:"Fizz assistant",sub:"Answers in seconds",
+  hi:"Hi! I'm the Fizz assistant. I can help you choose a package or answer a quick question.",
+  m_pick:"Help me choose a package",m_how:"How do you work?",m_where:"Where do you work?",m_human:"I'd like to talk to a person",
+  how:"We work in four steps. We visit you and get to know your business, design everything and show it in one presentation, launch it all together, then keep posting and running ads every month.",
+  where:"We don't have an office. We work online, with businesses in Kosovo, Türkiye or anywhere else.",
+  human:'Of course. Write to <a href="mailto:fizzcreativestudio@gmail.com">fizzcreativestudio@gmail.com</a> or send a DM to <a href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">@fizz.creativestudio</a> on Instagram. Göktuğ or Azra will answer.',
+  more:"Anything else I can help with?",
+  q_type:"What kind of business do you have?",q_stage:"Where are you right now?",q_needs:"What do you need? Pick as many as you like.",q_time:"When would you like to start?",
+  st_new:"Opening soon or just opened",st_refresh:"Our brand needs a refresh",st_grow:"Our brand is fine, we want more customers",
+  n_logo:"Logo & identity",n_insta:"Instagram",n_web:"Website",n_ads:"Ads & Google",done:"Done",
+  t_now:"As soon as possible",t_month:"Within a month",t_look:"Just looking for now",
+  rec:"I'd start with",also:"You could add",
+  why_fresh:"A logo, a full identity, print basics and an Instagram profile ready to go.",
+  why_full:"Brand, Instagram and website in one go, all launched together.",
+  why_feed:"We plan, shoot and post every month, so your Instagram never goes quiet.",
+  why_ads:"Meta Ads, Google Ads and Local SEO bring people nearby to your door.",
+  why_custom:"None of the packages fits exactly, so we'll put together an offer just for you.",
+  custom:"A custom plan",fill:"Fill in the form with this",restart:"Start over",
+  sum:"Stage: {s}. Start: {t}."},
+tr:{fab:"Yardım?",title:"Fizz asistanı",sub:"Hemen yanıtlar",
+  hi:"Merhaba! Ben Fizz asistanı. Size uygun paketi bulmanıza yardım edebilir ya da kısa sorularınızı yanıtlayabilirim.",
+  m_pick:"Paket seçmeme yardım et",m_how:"Nasıl çalışıyorsunuz?",m_where:"Nereden çalışıyorsunuz?",m_human:"Biriyle konuşmak istiyorum",
+  how:"Dört adımda ilerliyoruz. Önce sizi ziyaret edip işletmenizi tanıyoruz, sonra her şeyi tasarlayıp tek sunumda gösteriyoruz. Ardından hepsini birlikte yayına alıyor, her ay paylaşım ve reklamlarla devam ediyoruz.",
+  where:"Ofisimiz yok, online çalışıyoruz. Kosova'da, Türkiye'de ya da başka bir ülkede olmanız fark etmiyor.",
+  human:'Tabii. <a href="mailto:fizzcreativestudio@gmail.com">fizzcreativestudio@gmail.com</a> adresine yazabilir ya da Instagram\'da <a href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">@fizz.creativestudio</a> hesabına mesaj atabilirsiniz. Göktuğ ya da Azra size dönecek.',
+  more:"Başka bir konuda yardımcı olabilir miyim?",
+  q_type:"Nasıl bir işletmeniz var?",q_stage:"Şu an hangi aşamadasınız?",q_needs:"Neye ihtiyacınız var? Birden fazla seçebilirsiniz.",q_time:"Ne zaman başlamak istersiniz?",
+  st_new:"Yeni açılıyoruz ya da yeni açıldık",st_refresh:"Markamızı yenilemek istiyoruz",st_grow:"Markamız hazır, daha çok müşteri istiyoruz",
+  n_logo:"Logo ve kimlik",n_insta:"Instagram",n_web:"Web sitesi",n_ads:"Reklam ve Google",done:"Tamam",
+  t_now:"Hemen",t_month:"Bu ay içinde",t_look:"Şimdilik bakıyorum",
+  rec:"Bence şununla başlayın:",also:"Yanına şunu da ekleyebilirsiniz:",
+  why_fresh:"Logo, marka kimliği, basılı temel işler ve kullanıma hazır bir Instagram hesabı.",
+  why_full:"Marka, Instagram ve web sitesi bir arada. Hepsi birlikte yayına giriyor.",
+  why_feed:"Her ay planlıyor, çekiyor ve paylaşıyoruz. Instagram'ınız hiç sessiz kalmıyor.",
+  why_ads:"Meta Ads, Google Ads ve Local SEO ile yakındaki insanları kapınıza getiriyoruz.",
+  why_custom:"Paketlerden hiçbiri tam oturmuyor, size özel bir teklif hazırlarız.",
+  custom:"Size özel bir plan",fill:"Formu bununla doldur",restart:"Baştan başla",
+  sum:"Durum: {s}. Başlangıç: {t}."},
+sq:{fab:"Ndihmë?",title:"Asistenti i Fizz",sub:"Përgjigjet menjëherë",
+  hi:"Përshëndetje! Jam asistenti i Fizz. Mund t'ju ndihmoj të zgjidhni një paketë ose t'ju përgjigjem shpejt.",
+  m_pick:"Më ndihmo të zgjedh paketën",m_how:"Si punoni?",m_where:"Nga punoni?",m_human:"Dua të flas me dikë",
+  how:"Punojmë në katër hapa. Ju vizitojmë dhe njohim biznesin tuaj, dizajnojmë gjithçka dhe e paraqesim në një prezantim, e nxjerrim live të gjitha bashkë, pastaj vazhdojmë çdo muaj me postime dhe reklama.",
+  where:"Nuk kemi zyrë, punojmë online. Nuk ka rëndësi nëse jeni në Kosovë, Turqi apo diku tjetër.",
+  human:'Sigurisht. Na shkruani te <a href="mailto:fizzcreativestudio@gmail.com">fizzcreativestudio@gmail.com</a> ose në Instagram te <a href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">@fizz.creativestudio</a>. Göktuğ ose Azra do t\'ju përgjigjen.',
+  more:"Mund t'ju ndihmoj me diçka tjetër?",
+  q_type:"Çfarë lloj biznesi keni?",q_stage:"Në cilën fazë jeni tani?",q_needs:"Çfarë ju nevojitet? Mund të zgjidhni disa.",q_time:"Kur doni të filloni?",
+  st_new:"Po hapemi ose sapo u hapëm",st_refresh:"Marka jonë ka nevojë për rifreskim",st_grow:"Marka është gati, duam më shumë klientë",
+  n_logo:"Logo dhe identitet",n_insta:"Instagram",n_web:"Faqe interneti",n_ads:"Reklama dhe Google",done:"Gati",
+  t_now:"Sa më shpejt",t_month:"Brenda një muaji",t_look:"Thjesht po shikoj",
+  rec:"Unë do të nisja me:",also:"Mund të shtoni edhe:",
+  why_fresh:"Logo, identitet i plotë, materialet bazë për print dhe një profil Instagrami gati.",
+  why_full:"Markë, Instagram dhe faqe interneti së bashku. Gjithçka del live njëherësh.",
+  why_feed:"Çdo muaj planifikojmë, xhirojmë dhe postojmë, që Instagrami juaj të mos heshtë kurrë.",
+  why_ads:"Me Meta Ads, Google Ads dhe Local SEO sjellim njerëzit përreth te dera juaj.",
+  why_custom:"Asnjë paketë nuk përshtatet plotësisht, ndaj do t'ju bëjmë një ofertë të veçantë.",
+  custom:"Një plan i veçantë",fill:"Plotëso formularin me këtë",restart:"Fillo nga e para",
+  sum:"Situata: {s}. Fillimi: {t}."}
+};
+const bot = $('#bot'), fab = $('#botFab'), log = $('#botLog'), optsEl = $('#botOpts');
+const S = {type:null, stage:null, needs:new Set(), time:null, pack:null};
+let botTimer = null;
+const b = k => BT[lang][k];
+function bubble(html, cls){ const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; log.append(d); log.scrollTop = log.scrollHeight; return d; }
+function user(text){ const d = bubble('', 'u'); d.textContent = text; }
+function say(html, then, cls){
+  optsEl.innerHTML = '';
+  const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i>';
+  log.append(t); log.scrollTop = log.scrollHeight;
+  clearTimeout(botTimer);
+  botTimer = setTimeout(() => { t.remove(); bubble(html, cls || 'b'); if(then) then(); }, reduce ? 0 : 550);
+}
+function options(list){
+  optsEl.innerHTML = '';
+  list.forEach(o => { const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'opt' + (o.cls ? ' ' + o.cls : ''); btn.textContent = o.l; btn.addEventListener('click', o.f); optsEl.append(btn); });
+}
+function menu(first){
+  const items = [
+    {l:b('m_pick'), f:() => { user(b('m_pick')); askType(); }},
+    {l:b('m_how'), f:() => { user(b('m_how')); say(b('how'), () => say(b('more'), menu)); }},
+    {l:b('m_where'), f:() => { user(b('m_where')); say(b('where'), () => say(b('more'), menu)); }},
+    {l:b('m_human'), f:() => { user(b('m_human')); say(b('human'), () => say(b('more'), menu)); }}
+  ];
+  options(items);
+}
+function startBot(){
+  log.innerHTML = ''; S.type = S.stage = S.time = S.pack = null; S.needs.clear();
+  say(b('hi'), menu);
+}
+function askType(){
+  say(b('q_type'), () => options(TYPES.map(t => ({l:t[lang], f:() => { S.type = t; user(t[lang]); askStage(); }}))));
+}
+function askStage(){
+  say(b('q_stage'), () => options(['new','refresh','grow'].map(k => ({l:b('st_' + k), f:() => { S.stage = k; user(b('st_' + k)); askNeeds(); }}))));
+}
+function askNeeds(){
+  say(b('q_needs'), () => {
+    const keys = ['logo','insta','web','ads'];
+    const render = () => {
+      options([
+        ...keys.map(k => ({l:b('n_' + k), cls:S.needs.has(k) ? 'on' : '', f:() => { S.needs.has(k) ? S.needs.delete(k) : S.needs.add(k); render(); }})),
+        {l:b('done') + ' →', cls:'go', f:() => { if(!S.needs.size) return; user(keys.filter(k => S.needs.has(k)).map(k => b('n_' + k)).join(', ')); askTime(); }}
+      ]);
+      optsEl.lastChild.disabled = !S.needs.size;
+      $$('.opt', optsEl).forEach((o, i) => { if(i < keys.length) o.setAttribute('aria-pressed', S.needs.has(keys[i])); });
+    };
+    render();
+  });
+}
+function askTime(){
+  say(b('q_time'), () => options(['now','month','look'].map(k => ({l:b('t_' + k), f:() => { S.time = k; user(b('t_' + k)); recommend(); }}))));
+}
+function pickPack(){
+  const n = S.needs, st = S.stage; let p, also = null;
+  if((st === 'new' && (n.has('web') || n.size >= 3)) || (n.has('logo') && n.has('web'))) p = 'full';
+  else if(n.has('logo') || st === 'new' || st === 'refresh') p = n.has('web') ? 'full' : 'fresh';
+  else if(n.has('ads')) p = 'ads';
+  else if(n.has('insta')) p = 'feed';
+  else p = 'custom';
+  if(n.has('ads') && (p === 'fresh' || p === 'feed')) also = 'ads';
+  if(p === 'ads' && n.has('insta')) also = 'feed';
+  if(p === 'fresh' && n.has('insta') && !also) also = 'feed';
+  return {p, also};
+}
+function recommend(){
+  const {p, also} = pickPack(); S.pack = p;
+  const name = p === 'custom' ? b('custom') : PACKS[p];
+  let html = `${b('rec')}<b>${name}<span class="dot">.</span></b>${b('why_' + p)}`;
+  if(also) html += `<small>${b('also')} ${PACKS[also]}</small>`;
+  say(html, () => options([
+    {l:b('fill') + ' →', cls:'go', f:fillForm},
+    {l:b('restart'), f:() => { user(b('restart')); startBot(); }}
+  ]), 'b rec');
+}
+function fillForm(){
+  if(S.type) fType.value = S.type.v;
+  fPack.value = S.pack === 'custom' ? 'Not sure yet' : PACKS[S.pack];
+  Object.entries(SERVICE_BOX).forEach(([k, id]) => { $('#' + id).checked = S.needs.has(k); });
+  const msg = $('#f-msg');
+  const sum = b('sum').replace('{s}', b('st_' + S.stage)).replace('{t}', b('t_' + S.time));
+  if(!msg.value.trim()) msg.value = sum + '\n';
+  closeBot();
+  $('#brief').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  setTimeout(() => $('#f-name').focus({preventScroll:true}), reduce ? 0 : 700);
+}
+function openBot(){
+  bot.hidden = false; fab.hidden = true; fab.setAttribute('aria-expanded', 'true');
+  if(!log.children.length) startBot();
+  setTimeout(() => $('#botX').focus(), 50);
+}
+function closeBot(){ bot.hidden = true; fab.hidden = false; fab.setAttribute('aria-expanded', 'false'); fab.focus({preventScroll:true}); }
+fab.addEventListener('click', openBot);
+$('#openBot2').addEventListener('click', openBot);
+$('#botX').addEventListener('click', closeBot);
+bot.addEventListener('keydown', e => { if(e.key === 'Escape') closeBot(); });
+langHooks.push(() => {
+  $('#fabLbl').textContent = b('fab'); $('#botTitle').textContent = b('title'); $('#botSub').textContent = b('sub');
+  $('#botX').setAttribute('aria-label', {en:'Close',tr:'Kapat',sq:'Mbyll'}[lang]);
+  if(log.children.length){ clearTimeout(botTimer); log.innerHTML = ''; if(!bot.hidden) startBot(); }
+});
+
+/* ---------- Boot ---------- */
+let saved = null; try{ saved = localStorage.getItem('fizz-lang'); }catch(e){}
+const nl = (navigator.language || 'en').slice(0, 2);
+function resize(){ sizeField(); fitStage(); measurePin(); }
+addEventListener('resize', resize);
+setLang(saved || (nl === 'tr' || nl === 'sq' ? nl : 'en'));
+resize();
+if(document.fonts) document.fonts.ready.then(measurePin);
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
