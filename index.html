@@ -329,7 +329,22 @@ h2{font-size:clamp(44px,6.4vw,92px)}
 .step.act .n{color:var(--coral);-webkit-text-stroke-color:var(--coral)}
 .step h3{font-size:44px;margin-top:10px}
 .step p{color:var(--muted);max-width:34ch}
-.rail{position:relative;height:2px;background:var(--line);margin-top:48px}
+.rail{position:relative;height:2px;background:var(--line);margin-top:150px}
+.walkers{position:absolute;bottom:0;left:calc(var(--p,0) * 100%);transform:translateX(calc(var(--p,0) * -100%));display:flex;align-items:flex-end;pointer-events:none}
+.walkers img{height:130px;width:auto;display:block;margin-bottom:-4px}
+.walkers img + img{margin-left:-34px}
+.walkers.back img{transform:scaleX(-1)}
+.walkers.walking img{animation:walkbob .42s ease-in-out infinite}
+.walkers.walking img + img{animation-delay:-.21s}
+.walkers.back.walking img{animation-name:walkbobback}
+@keyframes walkbob{50%{transform:translateY(-7px) rotate(2deg)}}
+@keyframes walkbobback{0%,100%{transform:scaleX(-1)}50%{transform:scaleX(-1) translateY(-7px) rotate(2deg)}}
+.walkers img.pop{animation:wpop .4s var(--ease)}
+@keyframes wpop{40%{transform:translateY(-10px) scale(1.05)}}
+.step-chars{display:none}
+.pin:not(.pinned) .step-chars{display:flex;align-items:flex-end;height:120px;margin-top:8px}
+.step-chars img{height:100%;width:auto}
+.step-chars img + img{margin-left:-30px}
 .rail i{position:absolute;left:0;top:0;height:2px;width:100%;background:var(--petrol);transform-origin:left;transform:scaleX(var(--p,0))}
 .rail b{position:absolute;top:-7px;left:calc(var(--p,0) * 100%);width:16px;height:16px;margin-left:-8px;background:var(--coral);transform:rotate(calc(var(--p,0) * 360deg))}
 .pinned .pin-inner{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:safe center;overflow:hidden;padding-block:40px}
@@ -364,27 +379,49 @@ h2{font-size:clamp(44px,6.4vw,92px)}
 .seal::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:var(--cream)}
 @media (max-width:820px){.pk{grid-template-columns:1fr}.seal{width:92px;height:92px;top:-26px}}
 
-/* ---------- Studio ---------- */
-.studio .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:start}
-.studio .left{display:flex;flex-direction:column;gap:26px}
-.big{font-family:var(--serif);font-style:italic;font-size:clamp(32px,3.6vw,50px);line-height:1.12}
+/* ---------- Our story ---------- */
+.story-top{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.story-head{display:flex;flex-direction:column;gap:20px;position:sticky;top:110px}
+.story-head h2{line-height:1.04}
+.story-body{display:flex;flex-direction:column;gap:22px}
+.story-body p:not(.big){color:var(--muted);max-width:56ch}
+.big{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.2vw,44px);line-height:1.15}
 .big .q{color:#6E8C93;transition:color .4s}
 .big .q.lit{color:var(--petrol)}
-.studio .left p:not(.big){color:var(--muted);max-width:48ch}
-.founders{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.founder{display:flex;flex-direction:column;gap:12px}
-.founder:nth-child(2){margin-top:64px}
-.ph{aspect-ratio:4/5;max-width:100%;background:var(--sea);position:relative;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:96px;color:var(--cream);overflow:hidden;transition:transform .6s var(--ease)}
+/* The two founders in one sentence */
+.duo{margin:88px 0 96px;padding-block:44px;border-block:2px solid var(--petrol);display:flex;flex-direction:column;gap:22px}
+.duo p{display:grid;grid-template-columns:110px minmax(0,1fr);gap:22px;align-items:start;font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,4.6vw,66px);line-height:1.04;letter-spacing:.3px}
+.duo p + p{color:var(--coral)}
+.who-tag{justify-self:start;margin-top:.45em;font-family:var(--sans);text-transform:none;font-size:13px;font-weight:700;letter-spacing:.5px;line-height:1;padding:7px 12px;border-radius:999px;background:var(--sea);color:var(--petrol)}
+.who-tag.b{background:var(--butter)}
+@media (max-width:600px){.duo{margin:56px 0 64px;padding-block:32px}.duo p{grid-template-columns:1fr;gap:10px}.who-tag{margin-top:0}}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.person{display:grid;grid-template-columns:150px minmax(0,1fr);gap:30px;align-items:start}
+.person:nth-child(2){margin-top:72px}
+.ph{aspect-ratio:4/5;max-width:100%;background:var(--sea);position:relative;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:72px;color:var(--cream);overflow:hidden;transition:transform .6s var(--ease)}
 .ph.b{background:var(--butter);color:var(--petrol)}
-.founder:hover .ph{transform:rotate(-2deg) scale(1.02)}
+.person:hover .ph{transform:rotate(-2deg) scale(1.02)}
+.ph img{object-position:center bottom}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .25s}
+.ph img.alt{opacity:0}
+.person:hover .ph img.alt{opacity:1}
+.person:hover .ph img:not(.alt){opacity:0}
 .frame{position:relative}
 .frame::before,.frame::after{content:"";position:absolute;width:26px;height:26px;z-index:1}
 .frame::before{left:-8px;top:-8px;border-top:3px solid var(--petrol);border-left:3px solid var(--petrol)}
 .frame::after{right:-8px;bottom:-8px;border-right:3px solid var(--coral);border-bottom:3px solid var(--coral)}
-.founder b{font-size:18px}
-.founder span{color:var(--muted);font-size:14px}
-@media (max-width:900px){.studio .wrap{grid-template-columns:1fr;gap:48px}}
-
+.pinfo{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pinfo h3{font-size:clamp(44px,4.4vw,64px)}
+.pinfo .ptitle{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.pinfo p:not(.ptitle){color:var(--muted);font-size:16px}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.skills li{border:1.5px solid var(--petrol);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:500;transition:background .25s,color .25s}
+.skills li:hover{background:var(--petrol);color:var(--cream)}
+@media (max-width:1100px){.team{grid-template-columns:1fr}.person:nth-child(2){margin-top:0}}
+@media (max-width:900px){.story-top{grid-template-columns:1fr;gap:28px}.story-head{position:static}}
+@media (max-width:600px){
+  .person{grid-template-columns:1fr}.person .frame{width:150px}
+}
 /* ---------- Contact ---------- */
 .contact{background:var(--petrol);color:var(--cream);overflow:hidden}
 .contact .wrap{padding-block:120px 40px}
@@ -461,7 +498,11 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
 .bot-fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;align-items:center;gap:10px;background:var(--petrol);color:var(--cream);padding:7px 20px 7px 7px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:0 20px 40px -16px rgba(22,50,63,.7);transition:transform .35s var(--ease)}
 .bot-fab:hover{transform:translateY(-4px)}
 .bot-av{width:42px;height:42px;flex:none;background:var(--coral);color:var(--cream);display:grid;place-items:center;font-family:var(--display);font-size:20px;position:relative}
-.bot-av::after{content:"";position:absolute;right:-3px;bottom:-3px;width:11px;height:11px;background:#6FCF7A;border:2px solid var(--petrol)}
+.bot-faces{display:flex;flex:none;position:relative}
+.bot-faces img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:var(--sea);border:2px solid var(--petrol)}
+.bot-faces img + img{margin-left:-14px;background:var(--butter)}
+.bot-faces::after{content:"";position:absolute;right:-2px;bottom:0;width:11px;height:11px;border-radius:50%;background:#6FCF7A;border:2px solid var(--petrol)}
+.bot-fab .bot-faces img{border-color:var(--petrol-ink)}
 .bot{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:81;width:min(390px,calc(100vw - 32px));height:min(580px,calc(100vh - 110px));background:var(--cream);border:2px solid var(--petrol);display:flex;flex-direction:column;box-shadow:0 40px 80px -24px rgba(22,50,63,.65);transform-origin:bottom right;animation:botin .45s var(--ease) both}
 @keyframes botin{from{opacity:0;transform:translateY(20px) scale(.92)}}
 .bot-head{background:var(--petrol);color:var(--cream);padding:12px 8px 12px 14px;display:flex;align-items:center;gap:12px}
@@ -515,7 +556,7 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
       <li><a href="#services" data-i18n="nav_services">Services</a></li>
       <li><a href="#process" data-i18n="nav_process">Process</a></li>
       <li><a href="#packages" data-i18n="nav_packages">Packages</a></li>
-      <li><a href="#studio" data-i18n="nav_studio">Studio</a></li>
+      <li><a href="#studio" data-i18n="nav_studio">Our story</a></li>
     </ul>
     <div class="nav-r">
       <div class="lang" role="group" aria-label="Language">
@@ -714,7 +755,13 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
         <span class="chip" style="--k:5" data-i18n="c6">Bakeries</span>
         <span class="chip" style="--k:6" data-i18n="c7">Boutiques</span>
         <span class="chip" style="--k:7" data-i18n="c8">Fitness studios</span>
-        <span class="chip more" style="--k:8" data-i18n="c9">And more</span>
+        <span class="chip" style="--k:8" data-i18n="c10">Aesthetic clinics</span>
+        <span class="chip" style="--k:9" data-i18n="c11">Bars &amp; lounges</span>
+        <span class="chip" style="--k:10" data-i18n="c12">Event venues</span>
+        <span class="chip" style="--k:11" data-i18n="c13">Florists</span>
+        <span class="chip" style="--k:12" data-i18n="c14">Real estate offices</span>
+        <span class="chip" style="--k:13" data-i18n="c15">Courses &amp; schools</span>
+        <span class="chip more" style="--k:14" data-i18n="c9">And more</span>
       </div>
     </div>
   </section>
@@ -730,12 +777,12 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
             <p data-i18n="pr_p">Four steps, from the first coffee to launch day.</p>
           </div>
           <div class="track" id="track">
-            <div class="step"><span class="n">01</span><h3 data-i18n="p1_t">Discover<span class="dot">.</span></h3><p data-i18n="p1_d">We visit you, meet your customers and study your competitors.</p></div>
-            <div class="step"><span class="n">02</span><h3 data-i18n="p2_t">Design<span class="dot">.</span></h3><p data-i18n="p2_d">Logo, colors, voice and a first set of posts, shown to you in one presentation.</p></div>
-            <div class="step"><span class="n">03</span><h3 data-i18n="p3_t">Launch<span class="dot">.</span></h3><p data-i18n="p3_d">New sign, new feed, new website. Everything goes live together.</p></div>
-            <div class="step"><span class="n">04</span><h3 data-i18n="p4_t">Grow<span class="dot">.</span></h3><p data-i18n="p4_d">We keep posting, running ads and improving every month.</p></div>
+            <div class="step"><span class="n">01</span><h3 data-i18n="p1_t">Discover<span class="dot">.</span></h3><p data-i18n="p1_d">We visit you, meet your customers and study your competitors.</p><div class="step-chars" aria-hidden="true"><img src="img/c/g-thinking.png" alt="" width="278" height="375" loading="lazy"><img src="img/c/a-happy.png" alt="" width="278" height="375" loading="lazy"></div></div>
+            <div class="step"><span class="n">02</span><h3 data-i18n="p2_t">Design<span class="dot">.</span></h3><p data-i18n="p2_d">Logo, colors, voice and a first set of posts, shown to you in one presentation.</p><div class="step-chars" aria-hidden="true"><img src="img/c/g-happy.png" alt="" width="278" height="375" loading="lazy"><img src="img/c/a-idea.png" alt="" width="278" height="375" loading="lazy"></div></div>
+            <div class="step"><span class="n">03</span><h3 data-i18n="p3_t">Launch<span class="dot">.</span></h3><p data-i18n="p3_d">New sign, new feed, new website. Everything goes live together.</p><div class="step-chars" aria-hidden="true"><img src="img/c/g-look.png" alt="" width="278" height="375" loading="lazy"><img src="img/c/a-look.png" alt="" width="278" height="375" loading="lazy"></div></div>
+            <div class="step"><span class="n">04</span><h3 data-i18n="p4_t">Grow<span class="dot">.</span></h3><p data-i18n="p4_d">We keep posting, running ads and improving every month.</p><div class="step-chars" aria-hidden="true"><img src="img/c/g-celebrate.png" alt="" width="278" height="375" loading="lazy"><img src="img/c/a-celebrate.png" alt="" width="278" height="375" loading="lazy"></div></div>
           </div>
-          <div class="rail" id="rail"><i></i><b></b></div>
+          <div class="rail" id="rail"><i></i><b></b><div class="walkers" id="walkers" aria-hidden="true"><img id="wG" src="img/c/g-thinking.png" alt="" width="278" height="375"><img id="wA" src="img/c/a-happy.png" alt="" width="278" height="375"></div></div>
         </div>
       </div>
     </div>
@@ -780,17 +827,49 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
     </div>
   </section>
 
-  <!-- STUDIO -->
-  <section class="studio sec band" id="studio">
+  <!-- OUR STORY -->
+  <section class="story sec band" id="studio">
     <div class="wrap">
-      <div class="left">
-        <span class="eyebrow" data-i18n="st_eye">The studio</span>
-        <p class="big" id="quote" data-i18n="st_big">Fizz is a two-person studio. You talk to the people who design your brand, not to an account manager.</p>
-        <p data-i18n="st_p">We kept seeing good businesses get overlooked because of old logos and empty Instagram accounts, so we started Fizz. We take on a few clients at a time, which gives every project the time it needs.</p>
+      <div class="story-top">
+        <div class="story-head">
+          <span class="eyebrow" data-i18n="st_eye">Our story</span>
+          <h2 class="rv" data-i18n="st_h2">Two people. One studio. A lot of <span class="serif">fizz</span><span class="dot">.</span></h2>
+        </div>
+        <div class="story-body">
+          <p class="big" id="quote" data-i18n="st_big">Fizz started with a simple idea. Small businesses deserve the same smart branding that big brands get, without the big-agency price tag or the big-agency attitude.</p>
+          <p data-i18n="st_p">So we put two very different minds in one room: a psychologist who studies why people buy, and a developer who builds the places where they do. One of us understands the customer's mind, the other builds the customer's journey. Together we make brands that look good and work.</p>
+          <p data-i18n="st_p2">We work online with cafés, restaurants, clinics, salons, hotels and shops that are ready to be noticed.</p>
+        </div>
       </div>
-      <div class="founders">
-        <div class="founder rv"><div class="frame"><div class="ph" role="img" aria-label="Göktuğ">G</div></div><b>Göktuğ</b><span data-i18n="cofounder">Co-founder</span></div>
-        <div class="founder rv" style="--rd:.12s"><div class="frame"><div class="ph b" role="img" aria-label="Azra">A</div></div><b>Azra</b><span data-i18n="cofounder">Co-founder</span></div>
+
+      <figure class="duo rv">
+        <p><span class="who-tag">Göktuğ</span><span data-i18n="duo1">One of us finds out why people choose you.</span></p>
+        <p><span class="who-tag b">Azra</span><span data-i18n="duo2">The other makes sure they can find you.</span></p>
+      </figure>
+
+      <div class="team">
+        <article class="person rv">
+          <div class="frame"><div class="ph av-img"><img src="img/c/g-happy.png" alt="Göktuğ" width="278" height="375"><img class="alt" src="img/c/g-wink.png" alt="" aria-hidden="true" width="278" height="375"></div></div>
+          <div class="pinfo">
+            <h3>Göktuğ<span class="dot">.</span></h3>
+            <p class="ptitle" data-i18n="g_title">Psychologist · Brand &amp; Growth Strategist</p>
+            <p data-i18n="g_p1">Göktuğ is a psychologist who spends his days asking one question: why do people choose what they choose?</p>
+            <p data-i18n="g_p2">He has studied and trained in consumer psychology, consumer behaviour, neuromarketing and the behavioural sciences: how attention works, what builds trust, why one menu sells more than another, and what makes someone stop scrolling. He knows the small signals that turn a passer-by into a regular.</p>
+            <p data-i18n="g_p3">He also does the hands-on work. Göktuğ has experience in graphic design, SEO and paid advertising, so the strategy doesn't stay on paper. He designs it, launches it and measures it.</p>
+            <ul class="skills"><li data-i18n="gs1">Consumer psychology</li><li data-i18n="gs2">Neuromarketing</li><li data-i18n="gs3">Behavioural science</li><li data-i18n="gs4">Graphic design</li><li>SEO</li><li data-i18n="gs6">Paid ads</li></ul>
+          </div>
+        </article>
+        <article class="person rv" style="--rd:.12s">
+          <div class="frame"><div class="ph b av-img"><img src="img/c/a-happy.png" alt="Azra" width="278" height="375"><img class="alt" src="img/c/a-wink.png" alt="" aria-hidden="true" width="278" height="375"></div></div>
+          <div class="pinfo">
+            <h3>Azra<span class="dot">.</span></h3>
+            <p class="ptitle" data-i18n="a_title">Developer · Web &amp; Digital Lead</p>
+            <p data-i18n="a_p1">Azra is a software developer who turns ideas into things that work, from the website your customers land on to the booking and menu pages behind it.</p>
+            <p data-i18n="a_p2">She has training and experience in mobile development, digital marketing and web-based content management systems. She builds sites that load fast and look right on every phone. When your menu, prices or photos change, you send them to us and we update the site for you.</p>
+            <p data-i18n="a_p3">Because she also knows digital marketing, she builds with results in mind: pages that are easy to find on Google, simple to book from and ready for your ads to send people to.</p>
+            <ul class="skills"><li data-i18n="as1">Web development</li><li data-i18n="as2">Mobile development</li><li data-i18n="as3">Content management systems</li><li data-i18n="as4">Digital marketing</li><li data-i18n="as5">Google-ready pages</li><li data-i18n="as6">Menus &amp; booking</li></ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -875,10 +954,10 @@ footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);di
 </main>
 
 <!-- ASSISTANT -->
-<button class="bot-fab" id="botFab" type="button" aria-controls="bot" aria-expanded="false"><span class="bot-av" aria-hidden="true">F.</span><span class="lbl" id="fabLbl">Need help?</span></button>
+<button class="bot-fab" id="botFab" type="button" aria-controls="bot" aria-expanded="false"><span class="bot-faces" aria-hidden="true"><img class="face-g" src="img/c/gh-happy.png" alt="" width="128" height="128"><img class="face-a" src="img/c/ah-happy.png" alt="" width="128" height="128"></span><span class="lbl" id="fabLbl">Need help?</span></button>
 <div class="bot" id="bot" role="dialog" aria-labelledby="botTitle" hidden>
   <div class="bot-head">
-    <span class="bot-av" aria-hidden="true">F.</span>
+    <span class="bot-faces" aria-hidden="true"><img class="face-g" src="img/c/gh-happy.png" alt="" width="128" height="128"><img class="face-a" src="img/c/ah-happy.png" alt="" width="128" height="128"></span>
     <div><b id="botTitle">Fizz assistant</b><small id="botSub">Answers in seconds</small></div>
     <button class="bot-x" id="botX" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4"/></svg></button>
   </div>
@@ -896,7 +975,7 @@ const fine = matchMedia('(pointer: fine)').matches;
 /* ---------- Translations (English is read from the page itself) ---------- */
 const T = {
 tr:{
-  nav_services:"Hizmetler",nav_process:"Süreç",nav_packages:"Paketler",nav_studio:"Stüdyo",nav_cta:"Proje başlat",
+  nav_services:"Hizmetler",nav_process:"Süreç",nav_packages:"Paketler",nav_studio:"Hikâyemiz",nav_cta:"Proje başlat",
   hero_h1:'Markanız <span class="hl">fısır</span> fısır konuşulsun<span class="dot">.</span>',
   hero_lead:'<span class="serif">Fizz.</span> bir yaratıcı stüdyo. Logonuzdan Instagram\'ınıza, web sitenizden reklamlarınıza kadar markanızın her parçasını tek elden tasarlıyoruz.',
   cta_start:"Proje başlat",cta_see:"Neler yapıyoruz",hero_meta:"İlk görüşme ücretsiz",hero_meta2:"Kahvenizi alın, gerisi bizde",
@@ -913,7 +992,7 @@ tr:{
   g_1:"Meta Ads (Instagram ve Facebook)",g_5:"Aylık raporlama",
   who_h2:'Bir sonraki <span class="serif">adımı</span> atmak isteyenler için<span class="dot">.</span>',
   who_p:"Müşterisini kapıda karşılayan işletmelerle çalışıyoruz. İnsanlar sizi önce telefonda görüyor, sonra kapınızdan giriyor. İkisinde de iyi görünmeniz gerekiyor.",
-  c1:"Kafeler",c2:"Restoranlar",c3:"Diş klinikleri",c4:"Güzellik salonları",c5:"Oteller",c6:"Fırınlar",c7:"Butikler",c8:"Spor salonları",c9:"Ve daha fazlası",
+  c1:"Kafeler",c2:"Restoranlar",c3:"Diş klinikleri",c4:"Güzellik salonları",c5:"Oteller",c6:"Fırınlar",c7:"Butikler",c8:"Spor salonları",c9:"Ve daha fazlası",c10:"Estetik klinikleri",c11:"Barlar ve lounge'lar",c12:"Düğün ve etkinlik mekânları",c13:"Çiçekçiler",c14:"Emlak ofisleri",c15:"Kurslar ve okullar",
   pr_eye:"Süreç",pr_h2:'Nasıl çalışıyoruz<span class="dot">.</span>',
   pr_p:"İlk tanışma kahvesinden yayın gününe kadar dört adımda ilerliyoruz.",
   p1_t:'Keşfet<span class="dot">.</span>',p1_d:"Sizi yerinizde ziyaret ediyoruz. Müşterilerinizi tanıyor, rakiplerinize bakıyoruz.",
@@ -927,9 +1006,21 @@ tr:{
   k3_f:"Instagram'ı her ay düzenli yürüsün isteyenler için.",k3_1:"Ayda 12 gönderi ve 8 hikâye",k3_2:"Ayda bir çekim günü",k3_3:"Metinler ve paylaşım",k3_4:"Aylık rapor",
   k4_f:"Çevresindeki daha çok kişiye ulaşmak isteyenler için.",k4_1:"Meta Ads kampanyaları (Instagram ve Facebook)",k4_2:"Google Ads ve Local SEO",k4_3:"Google Business Profile yönetimi",k4_4:"Aylık rapor ve strateji görüşmesi",
   ask:"Teklif iste",popular:"En çok tercih edilen",seal:"EN SEVİLEN · EN SEVİLEN · EN SEVİLEN ·",
-  st_eye:"Stüdyo",st_big:"Fizz iki kişilik bir stüdyo. Arada müşteri temsilcisi yok, markanızı tasarlayan kişilerle doğrudan konuşuyorsunuz.",
-  st_p:"İyi işletmelerin eski logolar ve boş Instagram hesapları yüzünden gözden kaçtığını gördük, Fizz'i bu yüzden kurduk. Aynı anda az sayıda müşteriyle çalışıyoruz, böylece her işe gereken zamanı ayırabiliyoruz.",
-  cofounder:"Kurucu ortak",
+  st_eye:"Hikâyemiz",st_h2:'İki kişi. Tek stüdyo. Bolca <span class="serif">fizz</span><span class="dot">.</span>',
+  st_big:"Fizz basit bir fikirle başladı. Küçük işletmeler de büyük markaların aldığı akıllı marka çalışmasını hak ediyor. Hem de büyük ajans fiyatı ve büyük ajans tavrı olmadan.",
+  st_p:"Bu yüzden birbirinden çok farklı iki kişiyi bir araya getirdik: insanların neden satın aldığını inceleyen bir psikolog ve satın aldıkları yerleri kuran bir yazılımcı. Birimiz müşterinin aklını anlıyor, diğerimiz müşterinin yolculuğunu kuruyor. Birlikte hem iyi görünen hem de işe yarayan markalar yapıyoruz.",
+  st_p2:"Fark edilmeye hazır kafeler, restoranlar, klinikler, salonlar, oteller ve mağazalarla online çalışıyoruz.",
+  duo1:"Birimiz insanların sizi neden seçtiğini bulur.",duo2:"Diğerimiz sizi bulabilmelerini sağlar.",
+  g_title:"Psikolog · Marka ve Büyüme Stratejisti",
+  g_p1:"Göktuğ bir psikolog ve her gün aynı soruyu soruyor: İnsanlar seçtiklerini neden seçiyor?",
+  g_p2:"Tüketici psikolojisi, tüketici davranışı, nöropazarlama ve davranış bilimleri üzerine eğitim aldı. Dikkatin nasıl çalıştığını, güveni neyin oluşturduğunu, bir menünün neden diğerinden daha çok sattığını ve birinin ekranı kaydırmayı neden bıraktığını biliyor. Önünden geçen birini müdavime çeviren küçük işaretleri tanıyor.",
+  g_p3:"İşin uygulamasını da kendisi yapıyor. Grafik tasarım, SEO ve reklam yönetiminde deneyimli, bu yüzden strateji kâğıt üzerinde kalmıyor. Tasarlıyor, yayına alıyor ve sonuçlarını ölçüyor.",
+  gs1:"Tüketici psikolojisi",gs2:"Nöropazarlama",gs3:"Davranış bilimleri",gs4:"Grafik tasarım",gs6:"Reklam yönetimi",
+  a_title:"Yazılım Geliştirici · Web ve Dijital Sorumlusu",
+  a_p1:"Azra fikirleri çalışan şeylere dönüştüren bir yazılım geliştirici. Müşterilerinizin girdiği web sitesinden rezervasyon ve menü sayfalarına kadar her şeyi o kuruyor.",
+  a_p2:"Mobil geliştirme, dijital pazarlama ve web tabanlı içerik yönetim sistemleri üzerine eğitim ve deneyimi var. Hızlı açılan, her telefonda düzgün görünen siteler yapıyor. Menünüz, fiyatlarınız ya da fotoğraflarınız değiştiğinde bize iletmeniz yeterli. Siteyi biz güncelliyoruz.",
+  a_p3:"Dijital pazarlamayı da bildiği için sonucu düşünerek çalışıyor: Google'da kolay bulunan, kolayca rezervasyon yapılan ve reklamlarınızdan gelen ziyaretçileri karşılamaya hazır sayfalar.",
+  as1:"Web geliştirme",as2:"Mobil geliştirme",as3:"İçerik yönetim sistemleri",as4:"Dijital pazarlama",as5:"Google'a uygun sayfalar",as6:"Menü ve rezervasyon",
   bf_eye:"Proje formu",bf_h2:'Ne istediğinizi <span class="hl">anlatın</span><span class="dot">.</span>',
   bf_p:"Formu doldurun, size e-postayla dönelim. Her mesajı kendimiz okuyoruz.",bf_bot:"Emin değil misiniz? Asistana sorun",
   f_name:"Adınız",f_biz:"İşletmenizin adı",f_email:"E-posta",f_phone:"Telefon ya da WhatsApp (isteğe bağlı)",f_type:"İşletme türü",f_pack:"Paket",
@@ -938,7 +1029,7 @@ tr:{
   ct_mail:"Bize yazın",ct_dm:"Instagram'dan yazın",ct_email:"E-posta",copy:"Kopyala"
 },
 sq:{
-  nav_services:"Shërbimet",nav_process:"Procesi",nav_packages:"Paketat",nav_studio:"Studio",nav_cta:"Nis një projekt",
+  nav_services:"Shërbimet",nav_process:"Procesi",nav_packages:"Paketat",nav_studio:"Historia",nav_cta:"Nis një projekt",
   hero_h1:'Marka juaj, në <span class="hl">gojë</span> të të gjithëve<span class="dot">.</span>',
   hero_lead:'<span class="serif">Fizz.</span> është një studio kreative për branding, rrjete sociale, dizajn uebi dhe rritje. U japim bizneseve një pamje që bie në sy dhe një zë që mbahet mend.',
   cta_start:"Nis një projekt",cta_see:"Çfarë bëjmë",hero_meta:"Takimi i parë falas",hero_meta2:"Merrni kafenë, pjesën tjetër e bëjmë ne",
@@ -955,7 +1046,7 @@ sq:{
   g_1:"Meta Ads (Instagram dhe Facebook)",g_5:"Raportim mujor",
   who_h2:'Për vendet që <span class="serif">njerëzit vizitojnë</span><span class="dot">.</span>',
   who_p:"I njohim bizneset ku përshtypja e parë ndodh në telefon, e dyta te dera.",
-  c1:"Kafene",c2:"Restorante",c3:"Klinika dentare",c4:"Sallone bukurie",c5:"Hotele",c6:"Furra",c7:"Butikë",c8:"Studio fitnesi",c9:"Dhe më shumë",
+  c1:"Kafene",c2:"Restorante",c3:"Klinika dentare",c4:"Sallone bukurie",c5:"Hotele",c6:"Furra",c7:"Butikë",c8:"Studio fitnesi",c9:"Dhe më shumë",c10:"Klinika estetike",c11:"Bare dhe lounge",c12:"Salla eventesh",c13:"Lulishtore",c14:"Agjenci të patundshmërive",c15:"Kurse dhe shkolla",
   pr_eye:"Procesi",pr_h2:'Si punojmë<span class="dot">.</span>',
   pr_p:"Katër hapa nga kafeja e parë te një markë që ecën vetë.",
   p1_t:'Zbulo<span class="dot">.</span>',p1_d:"Ju vizitojmë, njohim klientët tuaj dhe studiojmë konkurrentët.",
@@ -969,9 +1060,21 @@ sq:{
   k3_f:"Për markat që duan një zë të qëndrueshëm.",k3_1:"12 postime dhe 8 stories në muaj",k3_2:"Një ditë xhirimi në muaj",k3_3:"Tekste dhe publikim",k3_4:"Raport mujor",
   k4_f:"Për markat gati të arrijnë më shumë njerëz përreth.",k4_1:"Fushata Meta Ads (Instagram dhe Facebook)",k4_2:"Google Ads dhe Local SEO",k4_3:"Kujdes për Google Business Profile",k4_4:"Raport mujor dhe takim strategjie",
   ask:"Kërko ofertë",popular:"Më i zgjedhuri",seal:"MË I ZGJEDHURI · MË I ZGJEDHURI ·",
-  st_eye:"Studio",st_big:"Fizz është një studio me dy veta. Flisni drejtpërdrejt me njerëzit që dizajnojnë markën tuaj, jo me një menaxher llogarie.",
-  st_p:"E nisëm Fizz sepse bizneset e mira fshiheshin pas logove të lodhura dhe profileve bosh. Punojmë me pak klientë njëkohësisht, që secili të marrë vëmendjen tonë të plotë.",
-  cofounder:"Co-founder",
+  st_eye:"Historia jonë",st_h2:'Dy njerëz. Një studio. Shumë <span class="serif">fizz</span><span class="dot">.</span>',
+  st_big:"Fizz nisi me një ide të thjeshtë. Bizneset e vogla meritojnë të njëjtin branding të zgjuar që marrin markat e mëdha, pa çmimet dhe pa qëndrimin e agjencive të mëdha.",
+  st_p:"Prandaj bashkuam dy mendje shumë të ndryshme: një psikolog që studion pse njerëzit blejnë dhe një zhvilluese që ndërton vendet ku ata blejnë. Njëri prej nesh e kupton mendjen e klientit, tjetra ndërton rrugëtimin e tij. Bashkë krijojmë marka që duken bukur dhe funksionojnë.",
+  st_p2:"Punojmë online me kafene, restorante, klinika, sallone, hotele dhe dyqane që janë gati të bien në sy.",
+  duo1:"Njëri prej nesh zbulon pse njerëzit ju zgjedhin.",duo2:"Tjetra kujdeset që t'ju gjejnë.",
+  g_title:"Psikolog · Strateg i markës dhe rritjes",
+  g_p1:"Göktuğ është psikolog dhe çdo ditë bën të njëjtën pyetje: pse njerëzit zgjedhin atë që zgjedhin?",
+  g_p2:"Ka studiuar dhe është trajnuar në psikologjinë e konsumatorit, sjelljen e konsumatorit, neuromarketingun dhe shkencat e sjelljes: si funksionon vëmendja, çfarë ndërton besimin, pse një menu shet më shumë se një tjetër dhe çfarë e bën dikë të ndalojë së lëvizuri ekranin. I njeh sinjalet e vogla që e kthejnë një kalimtar në klient të rregullt.",
+  g_p3:"Ai bën edhe punën praktike. Ka përvojë në dizajn grafik, SEO dhe reklama me pagesë, ndaj strategjia nuk mbetet në letër. E dizajnon, e lanson dhe e mat.",
+  gs1:"Psikologjia e konsumatorit",gs2:"Neuromarketing",gs3:"Shkencat e sjelljes",gs4:"Dizajn grafik",gs6:"Reklama me pagesë",
+  a_title:"Zhvilluese · Drejtuese e uebit dhe digjitalit",
+  a_p1:"Azra është zhvilluese softuerësh që i kthen idetë në gjëra që funksionojnë, nga faqja ku vijnë klientët tuaj deri te faqet e rezervimit dhe të menusë.",
+  a_p2:"Ka trajnim dhe përvojë në zhvillimin mobil, marketingun digjital dhe sistemet e menaxhimit të përmbajtjes në ueb. Ndërton faqe që hapen shpejt dhe duken mirë në çdo telefon. Kur ndryshon menuja, çmimet apo fotot, mjafton të na i dërgoni dhe ne e përditësojmë faqen.",
+  a_p3:"Meqë njeh edhe marketingun digjital, ndërton duke menduar për rezultatin: faqe që gjenden lehtë në Google, ku rezervohet thjesht dhe që janë gati t'i presin njerëzit që sjellin reklamat tuaja.",
+  as1:"Zhvillim uebi",as2:"Zhvillim mobil",as3:"Sisteme të menaxhimit të përmbajtjes",as4:"Marketing digjital",as5:"Faqe gati për Google",as6:"Menu dhe rezervime",
   bf_eye:"Formulari i projektit",bf_h2:'Na tregoni çfarë ju <span class="hl">duhet</span><span class="dot">.</span>',
   bf_p:"Plotësoni formularin dhe do t'ju përgjigjemi me email. Çdo mesazh e lexojmë vetë.",bf_bot:"Nuk jeni të sigurt? Pyetni asistentin",
   f_name:"Emri juaj",f_biz:"Emri i biznesit",f_email:"Email",f_phone:"Telefon ose WhatsApp (opsionale)",f_type:"Lloji i biznesit",f_pack:"Paketa",
@@ -1012,7 +1115,7 @@ function setLang(l){
   i18nEls.forEach(el => { const k = el.dataset.i18n; el.innerHTML = lang === 'en' ? EN[k] : (T[lang][k] ?? EN[k]); });
   splitWords($('#h1')); splitQuote(); onScroll();
   const btns = $$('.lang button'); btns.forEach((b, i) => { const on = b.dataset.lang === lang; b.classList.toggle('on', on); if(on) $('#pill').style.transform = `translateX(${i * 40}px)`; b.setAttribute('aria-pressed', on); });
-  try{ localStorage.setItem('fizz-lang', lang); }catch(e){}
+  try{ sessionStorage.setItem('fizz-lang', lang); }catch(e){}
   langHooks.forEach(f => f());
   measurePin();
 }
@@ -1090,16 +1193,36 @@ function measurePin(){
   } else { pin.style.height = ''; }
   onScroll();
 }
+/* Göktuğ and Azra walk along the process rail: walking pose while scrolling, a step pose when they stop */
+const WALK = [['thinking','happy'],['happy','idea'],['look','look'],['celebrate','celebrate']];
+const walkers = $('#walkers'), wG = $('#wG'), wA = $('#wA');
+let walkT = null;
+['walk','thinking','happy','idea','look','celebrate'].forEach(p => ['g','a'].forEach(w => { const im = new Image(); im.src = `img/c/${w}-${p}.png`; }));
+function setW(img, w, pose){ const s = `img/c/${w}-${pose}.png`; if(img.getAttribute('src') === s) return false; img.setAttribute('src', s); return true; }
+function walkStep(i, moved){
+  if(moved && !reduce){
+    walkers.classList.add('walking'); walkers.classList.toggle('back', dir < 0);
+    setW(wG, 'g', 'walk'); setW(wA, 'a', 'walk');
+    clearTimeout(walkT);
+    walkT = setTimeout(() => {
+      walkers.classList.remove('walking', 'back');
+      const changed = setW(wG, 'g', WALK[i][0]) | setW(wA, 'a', WALK[i][1]);
+      if(changed) [wG, wA].forEach(im => { im.classList.remove('pop'); void im.offsetWidth; im.classList.add('pop'); });
+    }, 180);
+  } else if(!moved){ setW(wG, 'g', WALK[i][0]); setW(wA, 'a', WALK[i][1]); }
+}
 function onScroll(){
   const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
   $('#progress').style.transform = `scaleX(${max > 0 ? y / max : 0})`;
   const nav = $('#nav'); if(y > 300 && y > lastY + 4) nav.classList.add('hide'); else if(y < lastY - 4 || y < 300) nav.classList.remove('hide');
+  const moved = y !== lastY;
   vel = Math.min(vel + Math.abs(y - lastY) * 0.08, 18); if(y !== lastY) dir = y > lastY ? 1 : -1; lastY = y;
   if(pinOn){
     const r = pin.getBoundingClientRect(), p = Math.min(1, Math.max(0, -r.top / (pin.offsetHeight - innerHeight || 1)));
     track.style.transform = `translateX(${-p * pinDist}px)`;
     rail.style.setProperty('--p', p);
     steps.forEach((s, i) => s.classList.toggle('act', p >= i / steps.length - .02 && (i === steps.length - 1 ? true : p < (i + 1) / steps.length)));
+    walkStep(Math.min(steps.length - 1, Math.floor(p * steps.length)), moved);
   } else {
     steps.forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('act', r.top < innerHeight * .6 && r.bottom > innerHeight * .3); });
   }
@@ -1259,12 +1382,14 @@ let botTimer = null;
 const b = k => BT[lang][k];
 function bubble(html, cls){ const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; log.append(d); log.scrollTop = log.scrollHeight; return d; }
 function user(text){ const d = bubble('', 'u'); d.textContent = text; }
+/* Göktuğ and Azra's faces react: thinking while typing, an idea for a package, a wink for "talk to a person" */
+function faces(pose){ ['g','a'].forEach(w => $$('.face-' + w).forEach(img => { const src = `img/c/${w}h-${pose}.png`; if(img.getAttribute('src') !== src) img.setAttribute('src', src); })); }
 function say(html, then, cls){
   optsEl.innerHTML = '';
   const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i>';
-  log.append(t); log.scrollTop = log.scrollHeight;
+  log.append(t); log.scrollTop = log.scrollHeight; faces('thinking');
   clearTimeout(botTimer);
-  botTimer = setTimeout(() => { t.remove(); bubble(html, cls || 'b'); if(then) then(); }, reduce ? 0 : 550);
+  botTimer = setTimeout(() => { t.remove(); bubble(html, cls || 'b'); faces((cls || '').includes('rec') ? 'idea' : html === b('human') ? 'wink' : 'happy'); if(then) then(); }, reduce ? 0 : 550);
 }
 function options(list){
   optsEl.innerHTML = '';
@@ -1531,11 +1656,11 @@ function demoStep(){
 })();
 
 /* ---------- Boot ---------- */
-let saved = null; try{ saved = localStorage.getItem('fizz-lang'); }catch(e){}
-const nl = (navigator.language || 'en').slice(0, 2);
+/* Every new visit opens in English; a language picked during the visit is kept until the tab closes */
+let saved = null; try{ saved = sessionStorage.getItem('fizz-lang'); localStorage.removeItem('fizz-lang'); }catch(e){}
 function resize(){ sizeField(); fitStage(); measurePin(); }
 addEventListener('resize', resize);
-setLang(saved || (nl === 'tr' || nl === 'sq' ? nl : 'en'));
+setLang(saved || 'en');
 resize();
 if(document.fonts) document.fonts.ready.then(measurePin);
 requestAnimationFrame(loop);
