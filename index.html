@@ -74,17 +74,11 @@
           <button type="button" aria-pressed="false" data-type="salon">Salon</button>
           <button type="button" aria-pressed="false" data-type="bakery">Bakery</button>
         </div>
-        <div class="swatches" role="group" aria-label="Colors" id="bPals">
-          <button type="button" aria-pressed="true" data-pal="fizz" style="--sa:#1D4A5E;--sb:#E06A4E"><span class="sr">Fizz</span></button>
-          <button type="button" aria-pressed="false" data-pal="olive" style="--sa:#3F4A2C;--sb:#C9A54C"><span class="sr">Olive</span></button>
-          <button type="button" aria-pressed="false" data-pal="berry" style="--sa:#5A2338;--sb:#E79A8A"><span class="sr">Berry</span></button>
-          <button type="button" aria-pressed="false" data-pal="ink" style="--sa:#16232B;--sb:#A9C3C5"><span class="sr">Ink</span></button>
-        </div>
         <button type="button" class="btn" id="bGo">Make this brand for me<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
     </div>
 
-    <div class="kit" id="kit" aria-live="polite">
+    <div class="kit rail" id="kit" aria-live="polite">
       <figure class="k k-card" data-ui>
         <div class="k-logo"><span class="nm">Luna</span><span class="k-dot"></span></div>
         <p class="k-tag" data-k="tag">coffee &amp; more</p>
@@ -101,15 +95,6 @@
         <p class="k-head" data-k="web">Book a table.</p>
         <figcaption>Web design</figcaption>
       </figure>
-      <figure class="k k-map" data-ui>
-        <div class="k-pin" aria-hidden="true"></div>
-        <div>
-          <p class="nm k-mapname">Luna</p>
-          <p class="k-meta"><span data-k="tag">coffee &amp; more</span> · Open</p>
-          <p class="k-btns"><span>Directions</span><span>Call</span></p>
-        </div>
-        <figcaption>Growth</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -120,30 +105,30 @@
     <h2 class="h2" id="svc-h">Four things, done properly<span class="dot" aria-hidden="true"></span></h2>
     <p class="intro">Pick one, or hand us all four. When it all comes from the same people, your sign, your feed, your website and your ads look like they belong together.</p>
   </div>
-  <div class="svc-grid">
+  <div class="svc-grid rail">
     <article class="svc">
       <figure class="pic r43"><img src="img/photos/branding.jpg" width="1280" height="960" loading="lazy" alt="Takeaway cups, a paper bag, cards and stickers printed with one simple brand mark on a linen-covered café table"></figure>
       <h3 class="h3">Branding</h3>
       <p>We work out who you are, how you look and how you talk.</p>
-      <ul class="ticks"><li>Logo &amp; logo suite</li><li>Color palette &amp; typography</li><li>Brand voice &amp; tagline</li><li>Menus, signage, cards &amp; print</li><li>Brand guidelines</li></ul>
+      <details class="incl" open><summary>What’s included</summary><ul class="ticks"><li>Logo &amp; logo suite</li><li>Color palette &amp; typography</li><li>Brand voice &amp; tagline</li><li>Menus, signage, cards &amp; print</li><li>Brand guidelines</li></ul></details>
     </article>
     <article class="svc">
       <figure class="pic r43"><img src="img/photos/social.jpg" width="1280" height="960" loading="lazy" alt="Hands holding a phone to photograph a latte and a pistachio croissant on a wooden café table"></figure>
       <h3 class="h3">Social media</h3>
       <p>A feed that looks planned, posts that get saved and stories people tap through.</p>
-      <ul class="ticks"><li>Monthly content plan</li><li>Post &amp; story design</li><li>Photo &amp; reel shoots</li><li>Captions &amp; publishing</li><li>Monthly results report</li></ul>
+      <details class="incl" open><summary>What’s included</summary><ul class="ticks"><li>Monthly content plan</li><li>Post &amp; story design</li><li>Photo &amp; reel shoots</li><li>Captions &amp; publishing</li><li>Monthly results report</li></ul></details>
     </article>
     <article class="svc">
       <figure class="pic r43"><img src="img/photos/web.jpg" width="1280" height="960" loading="lazy" alt="A laptop and a phone on a sunny desk, both showing the same restaurant website"></figure>
       <h3 class="h3">Web design</h3>
       <p>Fast, clear websites that turn a visit into a booking, a call or a table.</p>
-      <ul class="ticks"><li>Website design &amp; build</li><li>Online menus &amp; booking</li><li>Mobile-first, fast loading</li><li>SEO-ready structure</li><li>Care &amp; updates</li></ul>
+      <details class="incl" open><summary>What’s included</summary><ul class="ticks"><li>Website design &amp; build</li><li>Online menus &amp; booking</li><li>Mobile-first, fast loading</li><li>SEO-ready structure</li><li>Care &amp; updates</li></ul></details>
     </article>
     <article class="svc">
       <figure class="pic r43"><img src="img/photos/growth.jpg" width="1280" height="960" loading="lazy" alt="Someone on a cobbled street of cafés at sunset, following a map pin on their phone"></figure>
       <h3 class="h3">Growth</h3>
       <p>Get found on Google and seen on Instagram by people nearby who are ready to visit.</p>
-      <ul class="ticks"><li>Meta Ads (Instagram &amp; Facebook)</li><li>Google Ads</li><li>Local SEO</li><li>Google Business Profile</li><li>Monthly reporting</li></ul>
+      <details class="incl" open><summary>What’s included</summary><ul class="ticks"><li>Meta Ads (Instagram &amp; Facebook)</li><li>Google Ads</li><li>Local SEO</li><li>Google Business Profile</li><li>Monthly reporting</li></ul></details>
     </article>
   </div>
 </section>
@@ -155,15 +140,13 @@
       <h2 class="h2" id="who-h">Made for places people visit<span class="dot" aria-hidden="true"></span></h2>
       <p class="intro">We know businesses where the first impression happens on a phone and the second one at the door.</p>
     </div>
-    <ul class="places">
+    <ul class="places rail">
       <li><figure class="pic r45"><img src="img/photos/barista.jpg" width="960" height="1280" loading="lazy" alt="A barista pouring latte art behind an espresso machine"></figure><span>Cafés</span></li>
       <li><figure class="pic r45"><img src="img/photos/dental.jpg" width="960" height="1280" loading="lazy" alt="A calm dental clinic reception with a curved wooden desk and a green armchair"></figure><span>Dental clinics</span></li>
       <li><figure class="pic r45"><img src="img/photos/salon.jpg" width="960" height="1280" loading="lazy" alt="A leather salon chair in front of a round brass mirror"></figure><span>Beauty salons</span></li>
       <li><figure class="pic r45"><img src="img/photos/bakery.jpg" width="960" height="1280" loading="lazy" alt="A baker arranging sourdough loaves above trays of simit and pastries"></figure><span>Bakeries</span></li>
     </ul>
-    <ul class="types" aria-label="Businesses we work with">
-      <li>Restaurants</li><li>Hotels</li><li>Boutiques</li><li>Fitness studios</li><li>Aesthetic clinics</li><li>Bars &amp; lounges</li><li>Event venues</li><li>Florists</li><li>Real estate offices</li><li>Courses &amp; schools</li><li>And more</li>
-    </ul>
+    <p class="types">Restaurants · Hotels · Boutiques · Fitness studios · Aesthetic clinics · Bars &amp; lounges · Event venues · Florists · Real estate offices · Courses &amp; schools · And more</p>
   </div>
 </section>
 
@@ -184,10 +167,6 @@
   </ol>
 </section>
 
-<figure class="band">
-  <img src="img/photos/launch.jpg" width="1280" height="960" loading="lazy" alt="A navy café front with a striped awning, two small tables outside and a woman walking past with a coffee">
-  <figcaption class="wrap"><span>New sign, new feed, new website. Everything goes live together.</span></figcaption>
-</figure>
 
 <!-- Packages (no prices) -->
 <section class="sec wrap" id="packages" aria-labelledby="pk-h">
@@ -195,7 +174,7 @@
     <h2 class="h2" id="pk-h">Pick your fizz<span class="dot" aria-hidden="true"></span></h2>
     <p class="intro">Most of our clients start with one of these four packages. The first consultation is free.</p>
   </div>
-  <div class="packs">
+  <div class="packs rail">
     <article class="pack">
       <h3 class="h3">Fresh start</h3>
       <p class="for">For new openings and rebrands.</p>
@@ -235,9 +214,7 @@
     </div>
     <div class="people">
       <article class="person">
-        <div class="mono" aria-hidden="true">G</div>
         <div class="person-txt">
-          <p class="quote">One of us finds out why people choose you.</p>
           <h3 class="name">Göktuğ</h3>
           <p class="role">Psychologist · Brand &amp; Growth Strategist</p>
           <p>Göktuğ is a psychologist who spends his days asking one question: why do people choose what they choose? He has experience in graphic design, SEO and paid advertising, so the strategy doesn’t stay on paper. He designs it, launches it and measures it.</p>
@@ -245,13 +222,10 @@
             <summary>More about Göktuğ</summary>
             <p>He has studied and trained in consumer psychology, consumer behaviour, neuromarketing and the behavioural sciences: how attention works, what builds trust, why one menu sells more than another, and what makes someone stop scrolling. He knows the small signals that turn a passer-by into a regular.</p>
           </details>
-          <ul class="skills"><li>Consumer psychology</li><li>Neuromarketing</li><li>Behavioural science</li><li>Graphic design</li><li>SEO</li><li>Paid ads</li></ul>
         </div>
       </article>
       <article class="person">
-        <div class="mono" aria-hidden="true">A</div>
         <div class="person-txt">
-          <p class="quote">The other makes sure they can find you.</p>
           <h3 class="name">Azra</h3>
           <p class="role">Developer · Web &amp; Digital Lead</p>
           <p>Azra is a software developer who turns ideas into things that work, from the website your customers land on to the booking and menu pages behind it. She builds sites that load fast and look right on every phone.</p>
@@ -260,7 +234,6 @@
             <p>She has training and experience in mobile development, digital marketing and web-based content management systems. When your menu, prices or photos change, you send them to us and we update the site for you.</p>
             <p>Because she also knows digital marketing, she builds with results in mind: pages that are easy to find on Google, simple to book from and ready for your ads to send people to.</p>
           </details>
-          <ul class="skills"><li>Web development</li><li>Mobile development</li><li>Content management systems</li><li>Digital marketing</li><li>Google-ready pages</li><li>Menus &amp; booking</li></ul>
         </div>
       </article>
     </div>

@@ -16,12 +16,6 @@ const TYPES = {
   salon:  { tag: 'hair & beauty',   post: 'New season, new look.',  web: 'Book your chair.',    cta: 'Book now',  photo: 'img/photos/salon.jpg',   form: 'Beauty salon / barber' },
   bakery: { tag: 'bakery & pastry', post: 'Fresh out of the oven.', web: 'Order for tomorrow.', cta: 'Order now', photo: 'img/photos/bakery.jpg',  form: 'Bakery' }
 };
-const PALS = {
-  fizz:  { a: '#1D4A5E', b: '#E06A4E', c: '#F6F1EA' },
-  olive: { a: '#3F4A2C', b: '#C9A54C', c: '#F3EFE3' },
-  berry: { a: '#5A2338', b: '#E79A8A', c: '#F8ECEA' },
-  ink:   { a: '#16232B', b: '#A9C3C5', c: '#F4F4F1' }
-};
 const kit = $('#kit'), bName = $('#bName');
 let type = 'cafe';
 const nameOf = () => bName.value.replace(/\s+/g, ' ').trim() || 'Luna';
@@ -47,11 +41,6 @@ $$('#bTypes button').forEach(b => b.addEventListener('click', () => {
   type = b.dataset.type;
   drawType(true);
 }));
-$$('#bPals button').forEach(b => b.addEventListener('click', () => {
-  $$('#bPals button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  const p = PALS[b.dataset.pal];
-  kit.style.setProperty('--pa', p.a); kit.style.setProperty('--pb', p.b); kit.style.setProperty('--pc', p.c);
-}));
 $('#bGo').addEventListener('click', () => {
   $('#f-biz').value = nameOf();
   $('#f-type').value = TYPES[type].form;
@@ -60,6 +49,9 @@ $('#bGo').addEventListener('click', () => {
   $('#brief').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 700);
 });
+
+/* ---------- On phones the service lists start folded ---------- */
+if (matchMedia('(max-width: 760px)').matches) $$('.incl').forEach(d => (d.open = false));
 
 /* ---------- Packages preselect the form ---------- */
 $$('.ask').forEach(a => a.addEventListener('click', () => { $('#f-pack').value = a.dataset.pack; }));
