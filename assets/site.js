@@ -9,6 +9,58 @@ const onScroll = () => nav.classList.toggle('scrolled', scrollY > 8);
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+/* ---------- Try it: one name across sign, feed, website and maps ---------- */
+const TYPES = {
+  cafe:   { tag: 'coffee & more',   post: 'Grand opening.',         web: 'Book a table.',       cta: 'Reserve',   photo: 'img/photos/barista.jpg', form: 'Café / restaurant' },
+  clinic: { tag: 'dental studio',   post: 'Your smile, our care.',  web: 'Book a check-up.',    cta: 'Book now',  photo: 'img/photos/dental.jpg',  form: 'Dental / health clinic' },
+  salon:  { tag: 'hair & beauty',   post: 'New season, new look.',  web: 'Book your chair.',    cta: 'Book now',  photo: 'img/photos/salon.jpg',   form: 'Beauty salon / barber' },
+  bakery: { tag: 'bakery & pastry', post: 'Fresh out of the oven.', web: 'Order for tomorrow.', cta: 'Order now', photo: 'img/photos/bakery.jpg',  form: 'Bakery' }
+};
+const PALS = {
+  fizz:  { a: '#1D4A5E', b: '#E06A4E', c: '#F6F1EA' },
+  olive: { a: '#3F4A2C', b: '#C9A54C', c: '#F3EFE3' },
+  berry: { a: '#5A2338', b: '#E79A8A', c: '#F8ECEA' },
+  ink:   { a: '#16232B', b: '#A9C3C5', c: '#F4F4F1' }
+};
+const kit = $('#kit'), bName = $('#bName');
+let type = 'cafe';
+const nameOf = () => bName.value.replace(/\s+/g, ' ').trim() || 'Luna';
+
+function drawName() {
+  const n = nameOf();
+  $$('.nm', kit).forEach(e => (e.textContent = n));
+  $('.k-handle', kit).textContent = '@' + n.toLowerCase().replace(/[^a-z0-9çğıöşüëé]+/gi, '');
+}
+function drawType(animate) {
+  const t = TYPES[type];
+  $$('[data-k]', kit).forEach(el => {
+    const k = el.dataset.k;
+    if (k === 'photo') { el.src = t.photo; return; }
+    el.textContent = t[k];
+    /* a short blur bridges the old words and the new ones */
+    if (animate && !reduce && el.animate) el.animate([{ opacity: .4, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0)' }], { duration: 220, easing: 'cubic-bezier(.23,1,.32,1)' });
+  });
+}
+bName.addEventListener('input', drawName);
+$$('#bTypes button').forEach(b => b.addEventListener('click', () => {
+  $$('#bTypes button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  type = b.dataset.type;
+  drawType(true);
+}));
+$$('#bPals button').forEach(b => b.addEventListener('click', () => {
+  $$('#bPals button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const p = PALS[b.dataset.pal];
+  kit.style.setProperty('--pa', p.a); kit.style.setProperty('--pb', p.b); kit.style.setProperty('--pc', p.c);
+}));
+$('#bGo').addEventListener('click', () => {
+  $('#f-biz').value = nameOf();
+  $('#f-type').value = TYPES[type].form;
+  const brand = $('input[name="Services"][value="Branding"]');
+  if (brand) brand.checked = true;
+  $('#brief').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 700);
+});
+
 /* ---------- Packages preselect the form ---------- */
 $$('.ask').forEach(a => a.addEventListener('click', () => { $('#f-pack').value = a.dataset.pack; }));
 
@@ -20,23 +72,26 @@ $('#copyMail').addEventListener('click', async e => {
   setTimeout(() => (b.textContent = 'Copy email'), 2200);
 });
 
-/* ---------- Brief form (FormSubmit) ---------- */
+/* ---------- Brief form (FormSubmit). Errors appear only after a send attempt. ---------- */
 const FORM_TO = 'https://formsubmit.co/ajax/fizzcreativestudio@gmail.com';
 const form = $('#briefForm'), status = $('#f-status');
+const nameEl = $('#f-name'), mailEl = $('#f-email');
+const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+let tried = false;
+function check() {
+  const badName = !nameEl.value.trim(), badMail = !okMail(mailEl.value.trim());
+  nameEl.setAttribute('aria-invalid', badName); $('#e-name').hidden = !badName;
+  mailEl.setAttribute('aria-invalid', badMail); $('#e-email').hidden = !badMail;
+  return { badName, badMail };
+}
+[nameEl, mailEl].forEach(el => el.addEventListener('input', () => { if (tried) check(); }));
 form.addEventListener('submit', async e => {
   e.preventDefault();
   if (form._honey.value) return;
-  const nameEl = $('#f-name'), mailEl = $('#f-email');
-  const name = nameEl.value.trim(), email = mailEl.value.trim();
-  const badName = !name, badMail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  nameEl.setAttribute('aria-invalid', badName); mailEl.setAttribute('aria-invalid', badMail);
-  if (badName || badMail) {
-    status.textContent = 'Please add your name and a valid email.';
-    status.classList.add('err');
-    (badName ? nameEl : mailEl).focus();
-    return;
-  }
-  const biz = $('#f-biz').value.trim();
+  tried = true;
+  const { badName, badMail } = check();
+  if (badName || badMail) { (badName ? nameEl : mailEl).focus(); return; }
+  const name = nameEl.value.trim(), email = mailEl.value.trim(), biz = $('#f-biz').value.trim();
   const data = {
     Name: name, Business: biz || '-', email, Phone: $('#f-phone').value.trim() || '-',
     'Business type': $('#f-type').value || '-', Package: $('#f-pack').value || 'Not sure yet',
@@ -62,12 +117,13 @@ form.addEventListener('submit', async e => {
 /* ---------- Entrances: each section's parts arrive in reading order, once ---------- */
 const groups = [
   ['.hero', '.display, .lead, .actions, .hero-note, .hero-pic'],
+  ['.try-side', '.h2, .try-controls'], ['.kit', '.k'],
   ['.sec-head', '.h2, .intro'], ['.svc', '.pic, .h3, p, .ticks'],
   ['.places', 'li'], ['.who', '.types'],
-  ['.proc', '.proc-pic, .h2, .intro, .steps li'], ['main', '.band'],
+  ['.proc-top', '.h2, .intro, .proc-pic'], ['.steps', 'li'],
   ['.packs', '.pack'], ['.story-top', '.h2, .story-txt'], ['.people', '.person'],
-  ['.brief-side', '.h2, .intro'], ['.brief-main', '.field, .form-foot'],
-  ['.contact-in', '.display, .contact-note, .actions, .contact-lines']
+  ['.brief-side', '.h2, .intro, .brief-note'], ['.brief-main', '.field, .form-foot'],
+  ['.contact-in', '.contact-h, .contact-note, .actions, .contact-lines']
 ];
 if (!reduce && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver(es => es.forEach(en => {
@@ -80,4 +136,6 @@ if (!reduce && 'IntersectionObserver' in window) {
     io.observe(el);
   })));
 }
+
+drawName(); drawType(false);
 })();

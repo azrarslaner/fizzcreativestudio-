@@ -44,20 +44,74 @@
 
 <main id="main">
 
-<!-- Hero: one sentence, one photograph -->
+<!-- Hero -->
 <section class="hero wrap" id="top">
   <div class="hero-text">
     <h1 class="display">We make your brand go psst<span class="dot" aria-hidden="true"></span></h1>
     <p class="lead">Fizz. is a creative studio. We design every piece of your brand in one place: the logo, the Instagram feed, the website and the ads.</p>
     <div class="actions">
-      <a class="btn" href="#brief">Start a project<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></a>
-      <a class="link" href="#services">See what we do</a>
+      <a class="btn btn-lg" href="#brief">Start a project<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="link quiet" href="#services">See what we do</a>
     </div>
     <p class="hero-note">Free first consultation. Grab a coffee, we’ll handle the rest.</p>
   </div>
   <figure class="hero-pic pic">
     <img src="img/photos/hero.jpg" width="1536" height="864" alt="A marble café table with a latte, a croissant, a sketchbook of logo ideas, colour swatches, business cards and a phone showing an Instagram grid" fetchpriority="high">
   </figure>
+</section>
+
+<!-- Try it: one name across sign, feed, website and maps -->
+<section class="try" id="try" aria-labelledby="try-h">
+  <div class="wrap try-in">
+    <div class="try-side">
+      <h2 class="h2" id="try-h">Try it: type your business name<span class="dot" aria-hidden="true"></span></h2>
+      <div class="try-controls">
+        <label class="try-label" for="bName">Your business name</label>
+        <input id="bName" class="try-input" type="text" maxlength="22" autocomplete="off" spellcheck="false" value="Luna">
+        <div class="chips" role="group" aria-label="Business type" id="bTypes">
+          <button type="button" aria-pressed="true" data-type="cafe">Café</button>
+          <button type="button" aria-pressed="false" data-type="clinic">Clinic</button>
+          <button type="button" aria-pressed="false" data-type="salon">Salon</button>
+          <button type="button" aria-pressed="false" data-type="bakery">Bakery</button>
+        </div>
+        <div class="swatches" role="group" aria-label="Colors" id="bPals">
+          <button type="button" aria-pressed="true" data-pal="fizz" style="--sa:#1D4A5E;--sb:#E06A4E"><span class="sr">Fizz</span></button>
+          <button type="button" aria-pressed="false" data-pal="olive" style="--sa:#3F4A2C;--sb:#C9A54C"><span class="sr">Olive</span></button>
+          <button type="button" aria-pressed="false" data-pal="berry" style="--sa:#5A2338;--sb:#E79A8A"><span class="sr">Berry</span></button>
+          <button type="button" aria-pressed="false" data-pal="ink" style="--sa:#16232B;--sb:#A9C3C5"><span class="sr">Ink</span></button>
+        </div>
+        <button type="button" class="btn" id="bGo">Make this brand for me<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
+    </div>
+
+    <div class="kit" id="kit" aria-live="polite">
+      <figure class="k k-card" data-ui>
+        <div class="k-logo"><span class="nm">Luna</span><span class="k-dot"></span></div>
+        <p class="k-tag" data-k="tag">coffee &amp; more</p>
+        <figcaption>Branding</figcaption>
+      </figure>
+      <figure class="k k-post" data-ui>
+        <img data-k="photo" src="img/photos/barista.jpg" width="960" height="1280" alt="">
+        <div class="k-post-txt"><span class="k-handle">@luna</span><strong data-k="post">Grand opening.</strong></div>
+        <figcaption>Social media</figcaption>
+      </figure>
+      <figure class="k k-web" data-ui>
+        <div class="k-bar"><span class="nm k-mini">Luna</span><span class="k-cta" data-k="cta">Reserve</span></div>
+        <div class="k-webpic"><img data-k="photo" src="img/photos/barista.jpg" width="960" height="1280" alt=""></div>
+        <p class="k-head" data-k="web">Book a table.</p>
+        <figcaption>Web design</figcaption>
+      </figure>
+      <figure class="k k-map" data-ui>
+        <div class="k-pin" aria-hidden="true"></div>
+        <div>
+          <p class="nm k-mapname">Luna</p>
+          <p class="k-meta"><span data-k="tag">coffee &amp; more</span> · Open</p>
+          <p class="k-btns"><span>Directions</span><span>Call</span></p>
+        </div>
+        <figcaption>Growth</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- Services -->
@@ -107,43 +161,50 @@
       <li><figure class="pic r45"><img src="img/photos/salon.jpg" width="960" height="1280" loading="lazy" alt="A leather salon chair in front of a round brass mirror"></figure><span>Beauty salons</span></li>
       <li><figure class="pic r45"><img src="img/photos/bakery.jpg" width="960" height="1280" loading="lazy" alt="A baker arranging sourdough loaves above trays of simit and pastries"></figure><span>Bakeries</span></li>
     </ul>
-    <p class="types"><span>Cafés</span> <span>Restaurants</span> <span>Dental clinics</span> <span>Beauty salons</span> <span>Hotels</span> <span>Bakeries</span> <span>Boutiques</span> <span>Fitness studios</span> <span>Aesthetic clinics</span> <span>Bars &amp; lounges</span> <span>Event venues</span> <span>Florists</span> <span>Real estate offices</span> <span>Courses &amp; schools</span> <span>And more</span></p>
+    <ul class="types" aria-label="Businesses we work with">
+      <li>Restaurants</li><li>Hotels</li><li>Boutiques</li><li>Fitness studios</li><li>Aesthetic clinics</li><li>Bars &amp; lounges</li><li>Event venues</li><li>Florists</li><li>Real estate offices</li><li>Courses &amp; schools</li><li>And more</li>
+    </ul>
   </div>
 </section>
 
 <!-- Process -->
 <section class="sec wrap proc" id="process" aria-labelledby="proc-h">
-  <figure class="proc-pic pic"><img src="img/photos/process.jpg" width="1280" height="960" loading="lazy" alt="Two people at a wooden table sketching logo ideas next to colour swatches, photos and a laptop"></figure>
-  <div class="proc-text">
-    <h2 class="h2" id="proc-h">How we work<span class="dot" aria-hidden="true"></span></h2>
-    <p class="intro">Four steps, from the first coffee to launch day.</p>
-    <ol class="steps">
-      <li><h3 class="h3">Discover</h3><p>We visit you, meet your customers and study your competitors.</p></li>
-      <li><h3 class="h3">Design</h3><p>Logo, colors, voice and a first set of posts, shown to you in one presentation.</p></li>
-      <li><h3 class="h3">Launch</h3><p>New sign, new feed, new website. Everything goes live together.</p></li>
-      <li><h3 class="h3">Grow</h3><p>We keep posting, running ads and improving every month.</p></li>
-    </ol>
+  <div class="proc-top">
+    <div>
+      <h2 class="h2" id="proc-h">How we work<span class="dot" aria-hidden="true"></span></h2>
+      <p class="intro">Four steps, from the first coffee to launch day.</p>
+    </div>
+    <figure class="proc-pic pic"><img src="img/photos/process.jpg" width="1280" height="960" loading="lazy" alt="Two people at a wooden table sketching logo ideas next to colour swatches, photos and a laptop"></figure>
   </div>
+  <ol class="steps">
+    <li><h3 class="h3">Discover</h3><p>We visit you, meet your customers and study your competitors.</p></li>
+    <li><h3 class="h3">Design</h3><p>Logo, colors, voice and a first set of posts, shown to you in one presentation.</p></li>
+    <li><h3 class="h3">Launch</h3><p>New sign, new feed, new website. Everything goes live together.</p></li>
+    <li><h3 class="h3">Grow</h3><p>We keep posting, running ads and improving every month.</p></li>
+  </ol>
 </section>
 
-<figure class="band pic"><img src="img/photos/launch.jpg" width="1280" height="960" loading="lazy" alt="A navy café front with a striped awning, two small tables outside and a woman walking past with a coffee"></figure>
+<figure class="band">
+  <img src="img/photos/launch.jpg" width="1280" height="960" loading="lazy" alt="A navy café front with a striped awning, two small tables outside and a woman walking past with a coffee">
+  <figcaption class="wrap"><span>New sign, new feed, new website. Everything goes live together.</span></figcaption>
+</figure>
 
-<!-- Packages -->
+<!-- Packages (no prices) -->
 <section class="sec wrap" id="packages" aria-labelledby="pk-h">
   <div class="sec-head">
     <h2 class="h2" id="pk-h">Pick your fizz<span class="dot" aria-hidden="true"></span></h2>
-    <p class="intro">Most of our clients start with one of these four packages.</p>
+    <p class="intro">Most of our clients start with one of these four packages. The first consultation is free.</p>
   </div>
   <div class="packs">
     <article class="pack">
       <h3 class="h3">Fresh start</h3>
       <p class="for">For new openings and rebrands.</p>
       <ul class="ticks"><li>Logo &amp; brand identity</li><li>Brand guidelines</li><li>Print kit (cards, menu, sign)</li><li>Instagram profile setup</li></ul>
-      <a class="link ask" href="#brief" data-pack="Fresh start">Ask for a quote</a>
+      <a class="btn btn-ghost ask" href="#brief" data-pack="Fresh start">Ask for a quote</a>
     </article>
     <article class="pack pop">
-      <h3 class="h3">Full fizz</h3>
-      <p class="for"><strong>Most popular.</strong> Brand, feed and website in one go.</p>
+      <h3 class="h3 pop-h">Full fizz <span class="pill">Most popular</span></h3>
+      <p class="for">Brand, feed and website in one go.</p>
       <ul class="ticks"><li>Everything in Fresh start</li><li>Website with menu or booking</li><li>First month of social media</li><li>Launch shoot</li></ul>
       <a class="btn btn-light ask" href="#brief" data-pack="Full fizz">Ask for a quote</a>
     </article>
@@ -151,13 +212,13 @@
       <h3 class="h3">Monthly feed</h3>
       <p class="for">For brands that need a steady voice.</p>
       <ul class="ticks"><li>12 posts &amp; 8 stories a month</li><li>One shoot day a month</li><li>Captions &amp; publishing</li><li>Monthly report</li></ul>
-      <a class="link ask" href="#brief" data-pack="Monthly feed">Ask for a quote</a>
+      <a class="btn btn-ghost ask" href="#brief" data-pack="Monthly feed">Ask for a quote</a>
     </article>
     <article class="pack">
       <h3 class="h3">Ads management</h3>
       <p class="for">For brands ready to reach more people nearby.</p>
       <ul class="ticks"><li>Meta Ads campaigns (Instagram &amp; Facebook)</li><li>Google Ads &amp; Local SEO</li><li>Google Business Profile care</li><li>Monthly report &amp; strategy call</li></ul>
-      <a class="link ask" href="#brief" data-pack="Ads management">Ask for a quote</a>
+      <a class="btn btn-ghost ask" href="#brief" data-pack="Ads management">Ask for a quote</a>
     </article>
   </div>
 </section>
@@ -169,28 +230,38 @@
       <h2 class="h2" id="st-h">Two people. One studio. A lot of fizz<span class="dot" aria-hidden="true"></span></h2>
       <div class="story-txt">
         <p>Fizz started with a simple idea. Small businesses deserve the same smart branding that big brands get, without the big-agency price tag or the big-agency attitude.</p>
-        <p>So we put two very different minds in one room: a psychologist who studies why people buy, and a developer who builds the places where they do. One of us understands the customer’s mind, the other builds the customer’s journey. Together we make brands that look good and work.</p>
-        <p>We work online with cafés, restaurants, clinics, salons, hotels and shops that are ready to be noticed.</p>
+        <p>So we put two very different minds in one room: a psychologist who studies why people buy, and a developer who builds the places where they do. Together we make brands that look good and work.</p>
       </div>
     </div>
     <div class="people">
       <article class="person">
-        <p class="quote">One of us finds out why people choose you.</p>
-        <h3 class="name">Göktuğ</h3>
-        <p class="role">Psychologist · Brand &amp; Growth Strategist</p>
-        <p>Göktuğ is a psychologist who spends his days asking one question: why do people choose what they choose?</p>
-        <p>He has studied and trained in consumer psychology, consumer behaviour, neuromarketing and the behavioural sciences: how attention works, what builds trust, why one menu sells more than another, and what makes someone stop scrolling. He knows the small signals that turn a passer-by into a regular.</p>
-        <p>He also does the hands-on work. Göktuğ has experience in graphic design, SEO and paid advertising, so the strategy doesn’t stay on paper. He designs it, launches it and measures it.</p>
-        <ul class="skills"><li>Consumer psychology</li><li>Neuromarketing</li><li>Behavioural science</li><li>Graphic design</li><li>SEO</li><li>Paid ads</li></ul>
+        <div class="mono" aria-hidden="true">G</div>
+        <div class="person-txt">
+          <p class="quote">One of us finds out why people choose you.</p>
+          <h3 class="name">Göktuğ</h3>
+          <p class="role">Psychologist · Brand &amp; Growth Strategist</p>
+          <p>Göktuğ is a psychologist who spends his days asking one question: why do people choose what they choose? He has experience in graphic design, SEO and paid advertising, so the strategy doesn’t stay on paper. He designs it, launches it and measures it.</p>
+          <details class="more">
+            <summary>More about Göktuğ</summary>
+            <p>He has studied and trained in consumer psychology, consumer behaviour, neuromarketing and the behavioural sciences: how attention works, what builds trust, why one menu sells more than another, and what makes someone stop scrolling. He knows the small signals that turn a passer-by into a regular.</p>
+          </details>
+          <ul class="skills"><li>Consumer psychology</li><li>Neuromarketing</li><li>Behavioural science</li><li>Graphic design</li><li>SEO</li><li>Paid ads</li></ul>
+        </div>
       </article>
       <article class="person">
-        <p class="quote">The other makes sure they can find you.</p>
-        <h3 class="name">Azra</h3>
-        <p class="role">Developer · Web &amp; Digital Lead</p>
-        <p>Azra is a software developer who turns ideas into things that work, from the website your customers land on to the booking and menu pages behind it.</p>
-        <p>She has training and experience in mobile development, digital marketing and web-based content management systems. She builds sites that load fast and look right on every phone. When your menu, prices or photos change, you send them to us and we update the site for you.</p>
-        <p>Because she also knows digital marketing, she builds with results in mind: pages that are easy to find on Google, simple to book from and ready for your ads to send people to.</p>
-        <ul class="skills"><li>Web development</li><li>Mobile development</li><li>Content management systems</li><li>Digital marketing</li><li>Google-ready pages</li><li>Menus &amp; booking</li></ul>
+        <div class="mono" aria-hidden="true">A</div>
+        <div class="person-txt">
+          <p class="quote">The other makes sure they can find you.</p>
+          <h3 class="name">Azra</h3>
+          <p class="role">Developer · Web &amp; Digital Lead</p>
+          <p>Azra is a software developer who turns ideas into things that work, from the website your customers land on to the booking and menu pages behind it. She builds sites that load fast and look right on every phone.</p>
+          <details class="more">
+            <summary>More about Azra</summary>
+            <p>She has training and experience in mobile development, digital marketing and web-based content management systems. When your menu, prices or photos change, you send them to us and we update the site for you.</p>
+            <p>Because she also knows digital marketing, she builds with results in mind: pages that are easy to find on Google, simple to book from and ready for your ads to send people to.</p>
+          </details>
+          <ul class="skills"><li>Web development</li><li>Mobile development</li><li>Content management systems</li><li>Digital marketing</li><li>Google-ready pages</li><li>Menus &amp; booking</li></ul>
+        </div>
       </article>
     </div>
   </div>
@@ -201,12 +272,13 @@
   <div class="brief-side">
     <h2 class="h2" id="bf-h">Tell us what you need<span class="dot" aria-hidden="true"></span></h2>
     <p class="intro">Fill in the form and we’ll reply by email. We read every message ourselves.</p>
+    <p class="brief-note">We work online with cafés, restaurants, clinics, salons, hotels and shops that are ready to be noticed.</p>
   </div>
   <div class="brief-main">
     <form class="form" id="briefForm" novalidate>
-      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="Name" autocomplete="name" required></div>
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="Name" autocomplete="name" required aria-describedby="e-name"><p class="f-err" id="e-name" hidden>Please add your name.</p></div>
       <div class="field"><label for="f-biz">Business name</label><input id="f-biz" name="Business" autocomplete="organization"></div>
-      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><p class="f-err" id="e-email" hidden>Please add a valid email.</p></div>
       <div class="field"><label for="f-phone">Phone or WhatsApp (optional)</label><input id="f-phone" name="Phone" type="tel" autocomplete="tel"></div>
       <div class="field"><label for="f-type">Type of business</label>
         <select id="f-type" name="Business type">
@@ -227,13 +299,13 @@
       <div class="field full"><label for="f-msg">Tell us a bit more</label><textarea id="f-msg" name="Message" rows="5" placeholder="Your goals, when you’d like to start, anything we should know."></textarea></div>
       <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="form-foot full">
-        <button class="btn" type="submit" id="f-send">Send<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></button>
+        <button class="btn btn-lg" type="submit" id="f-send">Send<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></button>
         <p class="f-status" id="f-status" role="status" aria-live="polite"></p>
       </div>
     </form>
     <div class="sent" id="sent" hidden tabindex="-1">
       <h3 class="h3">Thank you<span class="dot" aria-hidden="true"></span></h3>
-      <p id="sentP">Your message is on its way. We’ll reply by email soon.</p>
+      <p>Your message is on its way. We’ll reply by email soon.</p>
     </div>
   </div>
 </section>
@@ -242,11 +314,11 @@
 <section class="contact" aria-labelledby="ct-h">
   <img class="contact-bg" src="img/photos/street.jpg" width="1280" height="960" loading="lazy" alt="">
   <div class="wrap contact-in">
-    <h2 class="display" id="ct-h">Ready to go psst?</h2>
+    <h2 class="contact-h" id="ct-h"><span class="serif">Ready to go</span> <span class="psst">psst?</span></h2>
     <p class="contact-note">We don’t have an office. We work online, with businesses in Kosovo, Türkiye or anywhere else.</p>
     <div class="actions">
-      <a class="btn btn-light" href="mailto:fizzcreativestudio@gmail.com">Email us<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></a>
-      <a class="link link-light" href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">DM us on Instagram</a>
+      <a class="btn btn-light btn-lg" href="mailto:fizzcreativestudio@gmail.com">Email us<svg class="arr" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="btn btn-outline-light btn-lg" href="https://www.instagram.com/fizz.creativestudio/" target="_blank" rel="noopener">DM us on Instagram</a>
     </div>
     <p class="contact-lines"><span>fizzcreativestudio@gmail.com</span><button type="button" class="copy" id="copyMail">Copy email</button><span>@fizz.creativestudio</span></p>
   </div>
